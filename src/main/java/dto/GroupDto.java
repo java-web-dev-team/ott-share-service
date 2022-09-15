@@ -21,9 +21,9 @@ public class GroupDto {
     private Integer period;
     private Integer memberCount;
 
-    public GroupDto(String groupName, Integer ottId, String content, Integer period) {
-        this.groupName = groupName;
+    public GroupDto(Integer ottId, String groupName, String content, Integer period) {
         this.ottId = ottId;
+        this.groupName = groupName;
         this.createdDate = LocalDate.now().toString();
         this.content = content;
         this.period = period;

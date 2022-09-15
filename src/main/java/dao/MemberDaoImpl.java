@@ -104,7 +104,7 @@ public class MemberDaoImpl implements MemberDao{
             rs = pstmt.executeQuery();
             if(rs.next()){
                 m = new MemberDto();
-                m.setMember_id(rs.getString("member_id"));
+                m.setMemberId(rs.getString("member_id"));
                 m.setPassword(rs.getString("password"));
                 m.setNickname(rs.getString("nickname"));
                 m.setPhone(rs.getString("phone"));
@@ -136,7 +136,7 @@ public class MemberDaoImpl implements MemberDao{
                 PreparedStatement pstmt = conn.prepareStatement(sql);
         ) {
             pstmt.setInt(1, 0);
-            pstmt.setString(2, member.getMember_id());
+            pstmt.setString(2, member.getMemberId());
             pstmt.setString(3, member.getPassword());
             pstmt.setString(4, member.getNickname());
             pstmt.setString(5, member.getPhone());
@@ -178,7 +178,7 @@ public class MemberDaoImpl implements MemberDao{
         pstmt.setString(1, m.getPassword());
         pstmt.setString(2, m.getNickname());
         pstmt.setString(3, m.getPhone());
-        pstmt.setString(4, m.getMember_id());
+        pstmt.setString(4, m.getMemberId());
 
         rowCnt = pstmt.executeUpdate();
         System.out.println("rowCnt = " + rowCnt);

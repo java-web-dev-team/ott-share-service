@@ -13,7 +13,6 @@ import static util.DBManager.getConnection;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class GroupDAO {
-    private int sequence = 10000;   //  TODO: 테스트용 / 향후 0으로 수정
     private static GroupDAO instance = null;
 
     public static GroupDAO getInstance() {
@@ -22,17 +21,6 @@ public class GroupDAO {
         }
         return instance;
     }
-
-//    // 데이터베이스를 조작하는 메소드를 정의
-//    // Connection을 CP에서 가져오는 메소드를 하나 정의
-//    public Connection getConnection() throws Exception /* 예외 처리 */ {
-//        Connection conn = null;
-//        Context initContext = new InitialContext();
-//        Context envContext = (Context) initContext.lookup("java:/comp/env");
-//        DataSource ds = (DataSource) envContext.lookup("jdbc/mysql");
-//        conn = ds.getConnection();
-//        return conn;
-//    }
 
     //    그룹 생성
     public int insertGroup(GroupDto groupDto) {
@@ -68,19 +56,22 @@ public class GroupDAO {
 
     //    그룹 참여
     public GroupDto joinGroup(MemberDto memberDto, GroupDto groupDto) {
-        String sql = "insert into info values (?, ?, ?, ?, ?);" +
-                "update `group` set member_count = ?;";
+        String insertSql = "insert into info values (?, ?, ?, ?, ?);";
+        String updateSql = "update `group` set member_count = ? where group_name = ?;";
         try {
             Connection conn = getConnection();
 //            info 등록
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            PreparedStatement preparedStatement = conn.prepareStatement(insertSql);
             preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, groupDto.getOttId());
             preparedStatement.setString(3, memberDto.getMemberId());
-            preparedStatement.setString(4, LocalDateTime.now().toString());
+            preparedStatement.setString(4, groupDto.getGroupName());
+            preparedStatement.setString(5, LocalDateTime.now().toString());
 
+            PreparedStatement preparedStatement1 = conn.prepareStatement(updateSql);
 //            memberCount 증가
             preparedStatement.setInt(1, groupDto.getMemberCount() + 1);
+            preparedStatement.setString(2, groupDto.getGroupName());
 
             preparedStatement.executeUpdate();
 
@@ -168,88 +159,4 @@ public class GroupDAO {
         }
         return new ArrayList<>();
     }
-
-
-//    그룹 조회 - 마이페이지에서 memberId로 조회
-//    public List<GroupDto> selectGroupsByMemberId(MemberDto memberDto) {
-//        List<GroupDto> result = new ArrayList<>();
-//        String sql = "select * from `group` where member_id = ?";
-//        ResultSet rs = null;
-//        try (Connection conn = getConnection();
-//             PreparedStatement pstmt = conn.prepareStatement(sql);) {
-//            pstmt.setInt(1, memberDto.getId());
-//            rs = pstmt.executeQuery();
-//            while(rs.next()) {
-//                GroupDto groupDto = new GroupDto();
-//                groupDto.setId(rs.getInt("id"));
-//                groupDto.setOttId(rs.getInt("ott_id"));
-//                groupDto.setGroupName(rs.getString("group_name"));
-//                groupDto.setCreatedDate(rs.getTimestamp("created_date").toLocalDateTime());
-//                groupDto.setStartDate(rs.getString("start_date"));
-//                groupDto.setEndDate(rs.getString("end_date"));
-//                result.add(groupDto);
-//                groupDto = null;
-//            }
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//        return result;
-//    }
-//
-////    update 가능 필드 : ottId, groupName, startDate, endDate
-//    public GroupDto updateGroup(GroupDto groupDto, Integer ottId, String groupName, String startDate, String endDate) {
-//        groupDto.updateGroupDto(ottId, groupName, startDate, endDate);
-//        String sql = "update `group` set ott_id=?, group_name=?, start_date=?, end_date=? where id=?";
-//        try (Connection conn = getConnection();
-//        ) {
-//            assert conn != null;
-//            try (PreparedStatement pstmt = conn.prepareStatement(sql);) {
-//                pstmt.setInt(1, ottId);
-//                pstmt.setString(2, groupName);
-//                pstmt.setString(3, startDate);
-//                pstmt.setString(4, endDate);
-//                pstmt.setInt(5, groupDto.getId());
-//                pstmt.executeUpdate();
-//            }
-//        } catch(Exception e) {
-//                e.printStackTrace();
-//            }
-//            return groupDto;
-//    }
-//
-//    // 회원정보를 삭제하는 메소드 : 사용자가 회원탈퇴, 관리자가 삭제
-//    public void deleteGroupByGroupName(String groupName) {
-//        String sql = "delete from `group` where id=?";
-//        try (Connection conn = getConnection();
-//             PreparedStatement pstmt = conn.prepareStatement(sql);) {
-//            pstmt.setString(1, groupName);
-//            pstmt.executeUpdate();
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    // 관리자 기능
-//    public List<GroupDto> selectAllGroups() {
-//        String sql = "select * from `group`";
-//        List<GroupDto> list = new ArrayList<GroupDto>();
-//        try (Connection conn = getConnection();
-//             Statement stmt = conn.createStatement();
-//             ResultSet rs = stmt.executeQuery(sql);	) {
-//            while (rs.next()) {
-//                // 중복되는 부분을 메소드로 만들어 준다.
-//                GroupDto groupDto = new GroupDto();
-//                groupDto.setGroupName(rs.getString("group_id"));
-//                groupDto.setOttId(rs.getInt("ott_id"));
-//                groupDto.setGroupName(rs.getString("group_name"));
-//                groupDto.setMemberId(rs.getInt("member_id"));
-//                groupDto.setStartDate(rs.getString("start_date"));
-//                groupDto.setEndDate(rs.getString("end_date"));
-//                list.add(groupDto);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
 }
