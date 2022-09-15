@@ -68,12 +68,14 @@ public class GroupDAO {
             preparedStatement.setString(4, groupDto.getGroupName());
             preparedStatement.setString(5, LocalDateTime.now().toString());
 
+            preparedStatement.executeUpdate();
+
             PreparedStatement preparedStatement1 = conn.prepareStatement(updateSql);
 //            memberCount 증가
-            preparedStatement.setInt(1, groupDto.getMemberCount() + 1);
-            preparedStatement.setString(2, groupDto.getGroupName());
+            preparedStatement1.setInt(1, groupDto.getMemberCount() + 1);
+            preparedStatement1.setString(2, groupDto.getGroupName());
 
-            preparedStatement.executeUpdate();
+            preparedStatement1.executeUpdate();
 
 //            Member 추가된 GroupDto 생성
             GroupDto updatedGroup = new GroupDto();
@@ -82,13 +84,15 @@ public class GroupDAO {
             selectPs.setInt(1, groupDto.getId());
 
             ResultSet resultSet = selectPs.executeQuery();
-            updatedGroup.setId(resultSet.getInt("id"));
-            updatedGroup.setGroupName(resultSet.getString("group_name"));
-            updatedGroup.setOttId(resultSet.getInt("ott_id"));
-            updatedGroup.setCreatedDate(resultSet.getString("created_date"));
-            updatedGroup.setContent(resultSet.getString("content"));
-            updatedGroup.setPeriod(resultSet.getInt("period"));
-            updatedGroup.setMemberCount(resultSet.getInt("member_count"));
+            while (resultSet.next()) {
+                updatedGroup.setId(resultSet.getInt("id"));
+                updatedGroup.setGroupName(resultSet.getString("group_name"));
+                updatedGroup.setOttId(resultSet.getInt("ott_id"));
+                updatedGroup.setCreatedDate(resultSet.getString("created_date"));
+                updatedGroup.setContent(resultSet.getString("content"));
+                updatedGroup.setPeriod(resultSet.getInt("period"));
+                updatedGroup.setMemberCount(resultSet.getInt("member_count"));
+            }
 
             return updatedGroup;
         } catch (SQLException e) {
@@ -119,10 +123,11 @@ public class GroupDAO {
                 selectedGroups.add(groupDto);
                 groupDto = null;
             }
+
+            return selectedGroups;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new ArrayList<>();
     }
 
 //    memberId 로 group 조회
@@ -154,9 +159,9 @@ public class GroupDAO {
                 selectedGroups.add(groupDto);
                 groupDto = null;
             }
+            return selectedGroups;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new ArrayList<>();
     }
 }

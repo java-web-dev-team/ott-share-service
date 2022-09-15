@@ -14,11 +14,22 @@ public class GroupTest {
 
 //        joinGroup test
         GroupDto groupDto2 = new GroupDto(1,"South",  "모집중", 6);
+        groupDto2.setId(1);
+
         groupDto2.setCreatedDate("2022-09-03");
         MemberDto memberDto1 = new MemberDto("abevillei", "TYzilDHrh", "Farra", "751-380-8801");
-        groupDAO.joinGroup(memberDto1, groupDto2);
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getId());
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getGroupName());
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getContent());
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getMemberCount());
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getPeriod());
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getCreatedDate());
+        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getOttId());
 
 
+        System.out.println(groupDAO.selectGroupsByOttId(7));
+
+        System.out.println(groupDAO.selectGroupsByMemberId("kmadsena"));
 
     }
 }
