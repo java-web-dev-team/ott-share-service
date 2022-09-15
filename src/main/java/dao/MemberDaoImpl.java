@@ -1,6 +1,8 @@
 package dao;
 
 import dto.MemberDto;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import util.DBManager;
 import java.sql.*;
 

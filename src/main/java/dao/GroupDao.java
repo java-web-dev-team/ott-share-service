@@ -12,12 +12,12 @@ import java.util.List;
 import static util.DBManager.getConnection;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class GroupDAO {
-    private static GroupDAO instance = null;
+public class GroupDao {
+    private static GroupDao instance = null;
 
-    public static GroupDAO getInstance() {
+    public static GroupDao getInstance() {
         if (instance == null) {
-            instance = new GroupDAO();
+            instance = new GroupDao();
         }
         return instance;
     }

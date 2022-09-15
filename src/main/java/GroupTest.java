@@ -1,4 +1,4 @@
-import dao.GroupDAO;
+import dao.GroupDao;
 import dto.GroupDto;
 import dto.MemberDto;
 
@@ -7,7 +7,7 @@ public class GroupTest {
     public static void main(String[] args) {
         GroupDto groupDto1 = new GroupDto(1, "aaa", "content", 3);
 
-        GroupDAO groupDAO = new GroupDAO();
+        GroupDao groupDAO = new GroupDao();
 
 //        insertGroup test
 //        groupDAO.insertGroup(groupDto1);
