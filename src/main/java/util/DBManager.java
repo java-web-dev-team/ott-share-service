@@ -10,9 +10,9 @@ public class DBManager {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            String jdbcUrl = "jdbc:mysql://192.168.10.13:3306/pizzaDB";
-            String user = "noye1";
-            String password = "1234";
+            String jdbcUrl = "jdbc:mysql://database-1.c2eprqlwdarg.us-west-2.rds.amazonaws.com:3306/pizzadb";
+            String user = "admin";
+            String password = "pizzamysqldb1!";
             conn = DriverManager.getConnection(jdbcUrl, user, password);
             return conn;
         } catch(Exception e) {

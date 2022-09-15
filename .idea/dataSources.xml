@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="pizzaDB@192.168.10.13" uuid="ad8bb7b7-bf52-4ad0-9fee-99c0129208df">
+    <data-source source="LOCAL" name="@database-1.c2eprqlwdarg.us-west-2.rds.amazonaws.com" uuid="a81ea79b-68f0-448b-8be5-e7a2b0ef27de">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.10.13:3306/pizzaDB</jdbc-url>
+      <jdbc-url>jdbc:mysql://database-1.c2eprqlwdarg.us-west-2.rds.amazonaws.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

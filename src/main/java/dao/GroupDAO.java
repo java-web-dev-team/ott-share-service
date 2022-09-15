@@ -25,7 +25,7 @@ public class GroupDAO {
     //    그룹 생성
     public int insertGroup(GroupDto groupDto) {
         //        중복검사
-        String confirmSql = "SELECT group_name FROM `group` WHERE group_name = ?";
+        String confirmSql = "SELECT group_name FROM 'group' WHERE group_name = ?";
         try {
             Connection conn = getConnection();
             PreparedStatement selectPs = conn.prepareStatement(confirmSql);
@@ -135,10 +135,10 @@ public class GroupDAO {
         List<GroupDto> selectedGroups = new ArrayList<>();
 
         String selectSql = "SELECT G.id, G.group_name, G.ott_id, G.created_date, G.content, G.period, G.member_count\n" +
-                "FROM pizzaDB.group G\n" +
-                "JOIN pizzaDB.info I\n" +
+                "FROM pizzadb.group G\n" +
+                "JOIN pizzadb.info I\n" +
                 "\tON I.group_name = G.group_name\n" +
-                "JOIN pizzaDB.member M\n" +
+                "JOIN pizzadb.member M\n" +
                 "\tON M.member_id = I.member_id\n" +
                 "WHERE M.member_id = ?";
         Connection conn = getConnection();
