@@ -18,13 +18,7 @@ public class GroupTest {
 
         groupDto2.setCreatedDate("2022-09-03");
         MemberDto memberDto1 = new MemberDto("abevillei", "TYzilDHrh", "Farra", "751-380-8801");
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getId());
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getGroupName());
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getContent());
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getMemberCount());
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getPeriod());
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getCreatedDate());
-        System.out.println(groupDAO.joinGroup(memberDto1, groupDto2).getOttId());
+
 
 
         System.out.println(groupDAO.selectGroupsByOttId(7));

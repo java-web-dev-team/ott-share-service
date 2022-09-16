@@ -22,8 +22,6 @@ public class MemberDaoImpl implements MemberDao{
                 count = rs.getInt(1);
             }
 
-            System.out.println("count = " + count);
-
             return count;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -99,28 +97,24 @@ public class MemberDaoImpl implements MemberDao{
     public MemberDto getMember(String id) {
         MemberDto m = null;
         String sql = "SELECT * FROM member WHERE member_id = ?";
-        ResultSet rs = null;
+        ResultSet rs;
         try{
             Connection conn = DBManager.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             if(rs.next()){
                 m = new MemberDto();
+                m.setId(rs.getInt("id"));
                 m.setMemberId(rs.getString("member_id"));
                 m.setPassword(rs.getString("password"));
                 m.setNickname(rs.getString("nickname"));
                 m.setPhone(rs.getString("phone"));
+
+                return m;
             }
         } catch(Exception e){
             e.printStackTrace();
-        } finally{
-            try{
-                if(rs != null){
-                    rs.close();
-                }
-            } catch(Exception e){
-                e.printStackTrace();
-            }
         }
 
         return m;
@@ -143,7 +137,6 @@ public class MemberDaoImpl implements MemberDao{
             pstmt.setString(4, member.getNickname());
             pstmt.setString(5, member.getPhone());
 
-            System.out.println("member = " + member);
             return pstmt.executeUpdate();
         }
     }
@@ -172,7 +165,7 @@ public class MemberDaoImpl implements MemberDao{
     // 멤버 수정 메서드
     @Override
     public int updateMember(MemberDto m) throws Exception {
-        int rowCnt;
+        int rowCnt = 0;
         String sql = "UPDATE member SET password = ?, nickname = ?, phone = ? " + "WHERE member_id = ?";
         Connection conn = DBManager.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -183,7 +176,6 @@ public class MemberDaoImpl implements MemberDao{
         pstmt.setString(4, m.getMemberId());
 
         rowCnt = pstmt.executeUpdate();
-        System.out.println("rowCnt = " + rowCnt);
 
         return rowCnt;
     }
