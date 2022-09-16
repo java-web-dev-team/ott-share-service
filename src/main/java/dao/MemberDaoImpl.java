@@ -1,8 +1,6 @@
 package dao;
 
 import dto.MemberDto;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import util.DBManager;
 import java.sql.*;
 
@@ -50,13 +48,7 @@ public class MemberDaoImpl implements MemberDao{
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if ( rs != null ) {
-                    rs.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            DBManager.close(rs);
         }
         return result;
     }
@@ -81,13 +73,7 @@ public class MemberDaoImpl implements MemberDao{
         } catch(Exception e){
             e.printStackTrace();
         } finally {
-            try{
-                if(rs != null){
-                    rs.close();
-                }
-            } catch(Exception e){
-                e.printStackTrace();
-            }
+            DBManager.close(rs);
         }
         return result;
     }
@@ -153,11 +139,10 @@ public class MemberDaoImpl implements MemberDao{
     // 멤버 삭제 메서드
     @Override
     public int deleteMember(String id) throws Exception {
-        int rowCnt = 0;
         String sql = "DELETE FROM member WHERE member_id = ?";
+
         Connection conn = DBManager.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
-
         pstmt.setString(1, id);
         return pstmt.executeUpdate();
     }
