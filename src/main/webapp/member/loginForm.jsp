@@ -145,8 +145,8 @@ body {
 			<div class="login-page">
 				<div class="form">
 					<form class="login-form" action="login.do" method="post" name="frm">
-			<input type="text" name="userid" placeholder="아이디"	value="${userid}" /> 
-			<input type="password" name="pwd" placeholder="비밀번호" />
+						<input type="text" name="userid" placeholder="아이디"	value="${userid}" />
+						<input type="password" name="pwd" placeholder="비밀번호" />
 						<button>login</button>
 						<p class="message">
 							Not registered? <a href="join.do">Create an account</a>
