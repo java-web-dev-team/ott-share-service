@@ -7,12 +7,17 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class DBManager {
-    public static Connection getConnection() throws Exception{
-        Class.forName("com.mysql.jdbc.Driver");
-        String jdbcUrl = "jdbc:mysql://database-1.c2eprqlwdarg.us-west-2.rds.amazonaws.com:3306/pizzadb";
-        String user = "admin";
-        String password = "pizzamysqldb1!";
-        return DriverManager.getConnection(jdbcUrl, user, password);
+    public static Connection getConnection() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String jdbcUrl = "jdbc:mysql://database-1.c2eprqlwdarg.us-west-2.rds.amazonaws.com:3306/pizzadb";
+            String user = "admin";
+            String password = "pizzamysqldb1!";
+            return DriverManager.getConnection(jdbcUrl, user, password);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // 자원반납하는 부분을 별도의 메소드로 빼냄(공통화)
