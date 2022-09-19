@@ -64,7 +64,7 @@ display: inline-block;
 margin: 0 0.5rem;
 
 animation : bounce;
-animation-duration 2s;
+animation-duration : 2s;
 }
 
 
@@ -77,7 +77,7 @@ animation-duration 2s;
 			<a href='home.do'> <img src="pizza.png"
 				style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
 			<ul class="menu" style="display: inline-table;">
-				<li id="로그인" onclick="location.href='/member/loginForm.jsp'"><a href="#">로그인</a></li>
+				<li id="로그인" onclick="location.href='/login.do'"><a href="#">로그인</a></li>
 				<li id="나의피자"><a href="#">나의 피자</a></li>
 				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
 				<li id="그룹찾기"><a href="#">그룹 찾기</a></li>
@@ -92,7 +92,7 @@ animation-duration 2s;
 		<div class="screen">
 			<div style="text-align: center; margin-top:100px;">
 			<div class="ott">
-				<a href="login.do"><img src="netflix.png" style="margin: 50px"></a>
+				<a href="/member/login.do"><img src="netflix.png" style="margin: 50px"></a>
 				<a href="login.do"><img src="disney+.png" style="margin: 50px"></a>
 				<a href="login.do"><img src="tiving.png" style="margin: 50px"></a>
 				<br>

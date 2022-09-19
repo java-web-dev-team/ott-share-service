@@ -3,6 +3,8 @@ package dao;
 import dto.MemberDto;
 import util.DBManager;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberDaoImpl implements MemberDao{
 
@@ -106,6 +108,30 @@ public class MemberDaoImpl implements MemberDao{
         return m;
     }
 
+    public List<MemberDto> selectAllMember(){
+        List<MemberDto> AllMemberlist = new ArrayList();
+        String sql = "SELECT * FROM member";
+        ResultSet rs;
+        try{
+            Connection conn = DBManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                MemberDto memberDto = new MemberDto();
+                memberDto.setMemberId("id");
+                memberDto.setMemberId("member_id");
+                memberDto.setPassword("password");
+                memberDto.setNickname("nickname");
+                memberDto.setPhone("phone");
+                AllMemberlist.add(memberDto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return AllMemberlist;
+    }
+
 
     // 가입 메서드
     @Override
@@ -164,7 +190,5 @@ public class MemberDaoImpl implements MemberDao{
 
         return rowCnt;
     }
-
-
 
 }

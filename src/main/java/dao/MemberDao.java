@@ -2,7 +2,10 @@ package dao;
 
 import dto.MemberDto;
 
+import java.util.List;
+
 public interface MemberDao {
+
 
     int insertMember(MemberDto m) throws Exception;
 
@@ -19,5 +22,7 @@ public interface MemberDao {
     int confirmID(String id) throws Exception;
 
     MemberDto getMember(String id) throws Exception;
+
+    List<MemberDto> selectAllMember() throws Exception;
 
 }

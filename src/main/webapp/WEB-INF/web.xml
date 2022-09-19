@@ -14,18 +14,38 @@
   <display-name>Archetype Created Web Application</display-name>
 
 
-<!--<servlet>-->
-<!--  <servlet-name>ControlURI</servlet-name>-->
-<!--    <servlet-class>controller.ControlURI</servlet-class>-->
-<!--  <init-param>-->
-<!--    <param-name>configFile</param-name>-->
-<!--    <param-value>src/main/resources/command.properties</param-value>-->
-<!--  </init-param>-->
-<!--</servlet>-->
+  <!-- 서블릿 설정 -->
+  <servlet>
+    <servlet-name>ControllerUsingURI</servlet-name>
+    <servlet-class>common.controller.ControllerUsingURI</servlet-class>
+    <init-param>
+      <param-name>configFile</param-name>
+      <param-value>/property/commandHandlerURI.properties</param-value>
+    </init-param>
+  </servlet>
 
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>ControlURI</servlet-name>-->
-<!--    <url-pattern>/*.do</url-pattern>-->
-<!--  </servlet-mapping>-->
+  <servlet-mapping>
+    <servlet-name>ControllerUsingURI</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
 
+<!--  <filter>-->
+<!--    <filter-name>LoginCheck</filter-name>-->
+<!--    <filter-class>filter.LoginCheckFilter</filter-class>-->
+<!--  </filter>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>LoginCheck</filter-name>-->
+<!--    <url-pattern>/member/update.do</url-pattern>-->
+
+<!--  </filter-mapping>-->
+<!--  &lt;!&ndash; 로그인을 해야지만 이용할 수 있는 url을 url-pattern에 등록 : 복수개를 사용 가능 &ndash;&gt;-->
+
+<!--  <welcome-file-list>-->
+<!--    <welcome-file>index.html</welcome-file>-->
+<!--    <welcome-file>index.htm</welcome-file>-->
+<!--    <welcome-file>index.jsp</welcome-file>-->
+<!--    <welcome-file>default.html</welcome-file>-->
+<!--    <welcome-file>default.htm</welcome-file>-->
+<!--    <welcome-file>default.jsp</welcome-file>-->
+<!--  </welcome-file-list>-->
 </web-app>
