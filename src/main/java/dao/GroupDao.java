@@ -60,41 +60,45 @@ public class GroupDao {
         String updateSql = "update `group` set member_count = ? where group_name = ?;";
         try {
             Connection conn = getConnection();
+            if (groupDto.getMemberCount() < 4) {    //  memberCount 확인
 //            info 등록
-            PreparedStatement preparedStatement = conn.prepareStatement(insertSql);
-            preparedStatement.setInt(1, 0);
-            preparedStatement.setInt(2, groupDto.getOttId());
-            preparedStatement.setString(3, memberDto.getMemberId());
-            preparedStatement.setString(4, groupDto.getGroupName());
-            preparedStatement.setString(5, LocalDateTime.now().toString());
+                PreparedStatement preparedStatement = conn.prepareStatement(insertSql);
+                preparedStatement.setInt(1, 0);
+                preparedStatement.setInt(2, groupDto.getOttId());
+                preparedStatement.setString(3, memberDto.getMemberId());
+                preparedStatement.setString(4, groupDto.getGroupName());
+                preparedStatement.setString(5, LocalDateTime.now().toString());
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
 
-            PreparedStatement preparedStatement1 = conn.prepareStatement(updateSql);
+                PreparedStatement preparedStatement1 = conn.prepareStatement(updateSql);
 //            memberCount 증가
-            preparedStatement1.setInt(1, groupDto.getMemberCount() + 1);
-            preparedStatement1.setString(2, groupDto.getGroupName());
+                preparedStatement1.setInt(1, groupDto.getMemberCount() + 1);
+                preparedStatement1.setString(2, groupDto.getGroupName());
 
-            preparedStatement1.executeUpdate();
+                preparedStatement1.executeUpdate();
 
 //            Member 추가된 GroupDto 생성
-            GroupDto updatedGroup = new GroupDto();
-            String selectSql = "select * from `group` where id = ?";
-            PreparedStatement selectPs = conn.prepareStatement(selectSql);
-            selectPs.setInt(1, groupDto.getId());
+                GroupDto updatedGroup = new GroupDto();
+                String selectSql = "select * from `group` where id = ?";
+                PreparedStatement selectPs = conn.prepareStatement(selectSql);
+                selectPs.setInt(1, groupDto.getId());
 
-            ResultSet resultSet = selectPs.executeQuery();
-            while (resultSet.next()) {
-                updatedGroup.setId(resultSet.getInt("id"));
-                updatedGroup.setGroupName(resultSet.getString("group_name"));
-                updatedGroup.setOttId(resultSet.getInt("ott_id"));
-                updatedGroup.setCreatedDate(resultSet.getString("created_date"));
-                updatedGroup.setContent(resultSet.getString("content"));
-                updatedGroup.setPeriod(resultSet.getInt("period"));
-                updatedGroup.setMemberCount(resultSet.getInt("member_count"));
+                ResultSet resultSet = selectPs.executeQuery();
+                while (resultSet.next()) {
+                    updatedGroup.setId(resultSet.getInt("id"));
+                    updatedGroup.setGroupName(resultSet.getString("group_name"));
+                    updatedGroup.setOttId(resultSet.getInt("ott_id"));
+                    updatedGroup.setCreatedDate(resultSet.getString("created_date"));
+                    updatedGroup.setContent(resultSet.getString("content"));
+                    updatedGroup.setPeriod(resultSet.getInt("period"));
+                    updatedGroup.setMemberCount(resultSet.getInt("member_count"));
+                }
+
+                return updatedGroup;
+            } else {
+                throw new RuntimeException();   //  TODO: 적절한 exception 사용 필요
             }
-
-            return updatedGroup;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -109,6 +113,36 @@ public class GroupDao {
         try {
             PreparedStatement selectPs = conn.prepareStatement(selectSql);
             selectPs.setInt(1, ottId);
+            ResultSet resultSet = selectPs.executeQuery();
+
+            while (resultSet.next()) {
+                GroupDto groupDto = new GroupDto();
+                groupDto.setId(resultSet.getInt("id"));
+                groupDto.setGroupName(resultSet.getString("group_name"));
+                groupDto.setOttId(resultSet.getInt("ott_id"));
+                groupDto.setCreatedDate(resultSet.getString("created_date"));
+                groupDto.setContent(resultSet.getString("content"));
+                groupDto.setPeriod(resultSet.getInt("period"));
+                groupDto.setMemberCount(resultSet.getInt("member_count"));
+                selectedGroups.add(groupDto);
+                groupDto = null;
+            }
+
+            return selectedGroups;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+//    groupName 으로 group 조회
+    public List<GroupDto> selectGroupsByGroupName(String searchKeyword) {
+        List<GroupDto> selectedGroups = new ArrayList<>();
+
+        String selectSql = "select * from `group` where group_name like ?";
+        Connection conn = getConnection();
+        try {
+            PreparedStatement selectPs = conn.prepareStatement(selectSql);
+            selectPs.setString(1, "%" + searchKeyword + "%");
             ResultSet resultSet = selectPs.executeQuery();
 
             while (resultSet.next()) {
@@ -164,4 +198,39 @@ public class GroupDao {
             throw new RuntimeException(e);
         }
     }
+
+//    모든 group 조회
+    public List<GroupDto> selectAllGroups() {
+        List<GroupDto> selectedGroups = new ArrayList<>();
+
+        String selectSql = "select * from `group`";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement preparedStatement = conn.prepareStatement(selectSql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                GroupDto groupDto = new GroupDto();
+                groupDto.setId(resultSet.getInt("id"));
+                groupDto.setGroupName(resultSet.getString("group_name"));
+                groupDto.setOttId(resultSet.getInt("ott_id"));
+                groupDto.setCreatedDate(resultSet.getString("created_date"));
+                groupDto.setContent(resultSet.getString("content"));
+                groupDto.setPeriod(resultSet.getInt("period"));
+                groupDto.setMemberCount(resultSet.getInt("member_count"));
+                selectedGroups.add(groupDto);
+                groupDto = null;
+            }
+
+            return selectedGroups;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+//    update Group -> groupName, ottId, content, period
+//    public GroupDto updateGroup(GroupDto groupDto) {
+//
+//    }
 }

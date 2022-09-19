@@ -21,7 +21,7 @@ public class ControllerUsingURI extends HttpServlet {
 	// cmd와 Handler 인스턴스 매핑 정보 저장
 	// 브라우저에서 cmd가 요청이 되면 그것을 처리하는 핸들러 인스턴스를 생성을 해서 저장
 	private Map<String, CommandHandler> commandHandlerMap = new HashMap<>();
-	
+
 	// 서블릿이 맨처음에 구동되는 불리는 메소드
 	@Override
 	public void init() throws ServletException {
@@ -35,7 +35,7 @@ public class ControllerUsingURI extends HttpServlet {
 		} catch(IOException e) {
 			throw new ServletException(e);
 		}
-		
+
 		Iterator<Object> keyIter = prop.keySet().iterator();
 		while(keyIter.hasNext()) {
 			String command = (String)keyIter.next();
@@ -50,7 +50,7 @@ public class ControllerUsingURI extends HttpServlet {
 			}
 		}
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
@@ -60,7 +60,7 @@ public class ControllerUsingURI extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
 	}
-	
+
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String command = req.getRequestURI();
 		if(command.indexOf(req.getContextPath()) == 0) {
@@ -76,7 +76,7 @@ public class ControllerUsingURI extends HttpServlet {
 		} catch(Throwable e) {
 			throw new ServletException(e);
 		}
-		
+
 		if(viewPage != null) {
 			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 			dispatcher.forward(req, resp);
