@@ -36,7 +36,7 @@ public class MemberDaoImplTest {
     public void insertMember() throws Exception {
         MemberDto m = new MemberDto("asdf", "1234", "user", "010-0000-0000");
         memberDao.insertMember(m);
-        assertTrue(memberDao.count() == 15);
+        assertTrue(memberDao.count() == 1);
     }
 
     @Test

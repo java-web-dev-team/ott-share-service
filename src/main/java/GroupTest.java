@@ -1,8 +1,10 @@
 import dao.GroupDao;
 import dto.GroupDto;
 import dto.MemberDto;
+import org.testng.annotations.Test;
 
 public class GroupTest {
+
 
     public static void main(String[] args) {
         GroupDto groupDto1 = new GroupDto(1, "aaa", "content", 3);
