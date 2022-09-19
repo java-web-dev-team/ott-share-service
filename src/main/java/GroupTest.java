@@ -26,7 +26,6 @@ public class GroupTest {
         System.out.println(groupDAO.selectGroupsByOttId(7));
 
         System.out.println(groupDAO.selectGroupsByMemberId("kmadsena"));
-        System.out.println(groupDAO.selectAllGroups());
 
     }
 }

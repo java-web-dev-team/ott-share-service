@@ -12,7 +12,9 @@ public class MainHandler implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "main.jsp";
+		return "/member/main.jsp";
 	}
+
+
 
 }

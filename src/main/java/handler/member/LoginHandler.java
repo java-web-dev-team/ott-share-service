@@ -27,9 +27,8 @@ public class LoginHandler implements CommandHandler {
     private String processForm(HttpServletRequest request, HttpServletResponse response){
         String url = "/member/loginForm.jsp";
         HttpSession session = request.getSession();
-
         if (session.getAttribute("loginUser") != null) {
-            url = "/main.jsp";
+            return "/member/main.jsp";
         }
 
         return url;
@@ -37,7 +36,7 @@ public class LoginHandler implements CommandHandler {
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String url = "/member/loginForm.jsp";
-        String userid = request.getParameter("member_id");
+        String userid = request.getParameter("memberId");
         String pwd = request.getParameter("password");
         MemberDao memberDao = new MemberDaoImpl();
         int result = memberDao.userCheck(userid, pwd);
@@ -46,6 +45,7 @@ public class LoginHandler implements CommandHandler {
             HttpSession session = request.getSession();
             session.setAttribute("loginUser", memberDto);
             request.setAttribute("msg", "로그인 성공");
+            return processForm(request, response);
         } else if(result== 0){
             request.setAttribute("msg", "비밀번호 틀림");
         } else{
