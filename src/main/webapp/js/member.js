@@ -1,7 +1,7 @@
 function idCheck() {
     if(document.frm.userid.value == "") {
         alert("아이디를 입력하여 주십시요.");
-        document.frm.userid.focus();	// 포커스를 아이디 입력 태그로 이동
+        document.frm.memberId.focus();	// 포커스를 아이디 입력 태그로 이동
         return;
     }
     // 정규표현식을 사용해서 아이디에 대한 유효성 검사를 할 수 있음.
@@ -13,12 +13,12 @@ function idCheck() {
     // 별도로 윈도우 팝업창을 띄우지 않음
 }
 
-function idok(userid) {
-    // opener: joinForm.jsp, document: idCheck.jsp
-    // 아이디 중복체크한 값으로 userid를 반영
-    opener.frm.userid.value = document.frm.member_id.value;
+function idok(id) {
+    // opener: registerForm.jsp, document: idCheck.jsp
+    // 아이디 중복체크한 값으로 id를 반영
+    opener.frm.id.value = document.frm.member_id.value;
     // 중복확인이 성공되었다는 것을 표시
-    opener.frm.reid.value = document.frm.member_id.value;
+    opener.frm.id.value = document.frm.member_id.value;
     self.close();	// 팝업창을 닫는다.
 }
 
@@ -64,19 +64,19 @@ function joinCheck() {
     */
 }
 
-/* 여기서는 정규표현식을 사용하지 않았음
-	지난 평가에서 정답으로 준것을 참고해서 유효성 검사를 할 줄 알아야 할 것 같습니다.
-*/
-// function loginCheck() {
-//     if (document.frm.member_id.value.length == 0) {
-//         alert("아이디를 써주세요");
-//         frm.member_id.focus();
-//         return false;
-//     }
-//     if (document.frm.pwd.value == "") {
-//         alert("암호는 반드시 입력해야 합니다.");
-//         frm.pwd.focus();
-//         return false;
-//     }
-//     return true;
-// }
+  // 여기서는 정규표현식을 사용하지 않았음
+	//지난 평가에서 정답으로 준것을 참고해서 유효성 검사를 할 줄 알아야 할 것 같습니다.
+
+function loginCheck() {
+    if (document.frm.member_id.value.length == 0) {
+        alert("아이디를 써주세요");
+        frm.member_id.focus();
+        return false;
+    }
+    if (document.frm.pwd.value == "") {
+        alert("암호는 반드시 입력해야 합니다.");
+        frm.pwd.focus();
+        return false;
+    }
+    return true;
+}
