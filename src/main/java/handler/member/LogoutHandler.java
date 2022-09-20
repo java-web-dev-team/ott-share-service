@@ -28,6 +28,6 @@ public class LogoutHandler implements CommandHandler {
     private String processForm(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
-        return "/member/loginForm.jsp";
+        return "/";
     }
     }

@@ -4,7 +4,6 @@
 <%@ page import="dao.GroupDao" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-<%--http://localhost:8090/ott_war_exploded/group/list.do--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -257,18 +256,19 @@ section.notice {
 }
 </style>
 </head>
+
 <body>
 
 	<header>
 		<div class="screen">
-			<a href='home.do'> <img src="pizza.png"
+			<a href='index.do'> <img src="pizza.png"
 				style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
 			<ul class="menu" style="display: inline-table;">
-				<li id="로그아웃"><a href="logout.do">로그아웃</a></li>
+				<li id="로그아웃"><a href="/member/logout.do">로그아웃</a></li>
 				<li id="나의피자"><a href="#">나의 피자</a></li>
 				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
 				<li id="그룹찾기"><a href="#">그룹 찾기</a></li>
-				<li id="그룹모집"><a href='../board/list.do'>그룹 모집</a></li>
+				<li id="그룹모집"><a href='/group/recruit.do'>그룹 모집</a></li>
 			</ul>
 		</div>
 		<hr>
@@ -281,7 +281,7 @@ section.notice {
 				<div class="page-title">
 					<div class="container">
 						<h3>그룹모집</h3>
-						<a href="write.do"><img src="button.png" style="float: right;"></a>
+						<a href="/group/recruit.do"><img src="button.png" style="float: right;"></a>
 					</div>
 				</div>
 
@@ -320,7 +320,7 @@ section.notice {
 										<c:if test="${group.ottId == 7}">
 											<td>아마존플러스</td>
 										</c:if>
-										<td>${group.groupName}</td>
+										<td><a href="/group/detail.do?groupName=${group.groupName}">${group.groupName}</a></td>
 										<td>${group.period}개월</td>
 										<c:if test="${group.memberCount < 4}">
 											<td>모집중</td>

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class GroupDto {
 
-    private Integer id;     //  PK
+    private Integer id = 0;     //  PK
     private String groupName;
     private Integer ottId;
     private String createdDate;
