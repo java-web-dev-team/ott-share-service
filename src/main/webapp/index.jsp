@@ -80,7 +80,7 @@ animation-duration : 2s;
 				<li id="로그인" onclick="location.href='/member/login.do'"><a href="#">로그인</a></li>
 				<li id="나의피자"><a href="#">나의 피자</a></li>
 				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
-				<li id="그룹찾기"><a href="#">그룹 찾기</a></li>
+				<li id="그룹찾기"><a href="/group/list.do">그룹 찾기</a></li>
 				<li id="그룹모집"><a href='../group/recruit.do'>그룹 모집</a></li>
 			</ul>
 		</div>
@@ -92,13 +92,13 @@ animation-duration : 2s;
 		<div class="screen">
 			<div style="text-align: center; margin-top:100px;">
 			<div class="ott">
-				<a href="/member/login.do"><img src="netflix.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="disney+.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="tiving.png" style="margin: 50px"></a>
+				<a href="/member/login.do"><img src="/img/netflix.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="/img/disney+.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="/img/tiving.png" style="margin: 50px"></a>
 				<br>
-				<a href="login.do"><img src="youtube.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="wacha.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="wave.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="/img/youtube.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="/img/wacha.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="/img/wave.png" style="margin: 50px"></a>
 				</div>
 					<img src="notice1.png">
 				</div>

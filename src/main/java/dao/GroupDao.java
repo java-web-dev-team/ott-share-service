@@ -121,27 +121,45 @@ public class GroupDao {
     }
 
     //    update Group -> groupName, ottId, content, period
-    public GroupDto updateGroup(GroupDto groupDto) {
-        String selectSql = "update `group` set group_name = ?";
+    public GroupDto updateGroup(GroupDto updatedGroup, GroupDto sessionGroup) {
+        //  그룹 수정 쿼리문
+        String updateSql = "update `group` " +
+                "set group_name = ?, ott_id = ?, content = ?, period = ? " +
+                "where group_name = ?";
+
+        //  수정된 그룹 반환 쿼리문
+        String selectSql = "select * from `group` where group_name = ?";
         Connection conn = getConnection();
         try {
             assert conn != null;
-            PreparedStatement preparedStatement = conn.prepareStatement(selectSql);
-            preparedStatement.setString(1, groupDto.getGroupName());
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            GroupDto updatedGroup = new GroupDto();
+            //  update
+            PreparedStatement updatePs = conn.prepareStatement(updateSql);
+            updatePs.setString(1, updatedGroup.getGroupName());
+            updatePs.setInt(2, updatedGroup.getOttId());
+            updatePs.setString(3, updatedGroup.getContent());
+            updatePs.setInt(4, updatedGroup.getPeriod());
+            updatePs.setString(5, sessionGroup.getGroupName());
+            updatePs.executeUpdate();
+
+            //  select
+            PreparedStatement selectPs = conn.prepareStatement(selectSql);
+            selectPs.setString(1, updatedGroup.getGroupName());
+
+            // update 된 그룹 객체 반환
+            ResultSet resultSet = selectPs.executeQuery();
+
+            GroupDto resultGroup = new GroupDto();
             while (resultSet.next()) {
-                groupDto.setId(resultSet.getInt("id"));
-                groupDto.setGroupName(resultSet.getString("group_name"));
-                groupDto.setOttId(resultSet.getInt("ott_id"));
-                groupDto.setCreatedDate(resultSet.getString("created_date"));
-                groupDto.setContent(resultSet.getString("content"));
-                groupDto.setPeriod(resultSet.getInt("period"));
-                groupDto.setMemberCount(resultSet.getInt("member_count"));
+                resultGroup.setGroupName(resultSet.getString("group_name"));
+                resultGroup.setOttId(resultSet.getInt("ott_id"));
+                resultGroup.setCreatedDate(resultSet.getString("created_date"));
+                resultGroup.setContent(resultSet.getString("content"));
+                resultGroup.setPeriod(resultSet.getInt("period"));
+                resultGroup.setMemberCount(resultSet.getInt("member_count"));
             }
 
-            return updatedGroup;
+            return resultGroup;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
