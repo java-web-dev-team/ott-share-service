@@ -48,7 +48,7 @@ public class MemberUpdateHandler implements CommandHandler {
 		memberDto.setPhone(phone);
 		MemberDao memberDao = new MemberDaoImpl();
 		memberDao.updateMember(memberDto);
-		response.sendRedirect("../index.do");
+		response.sendRedirect("../mypage.do");
 		return null;
 	}
 }
