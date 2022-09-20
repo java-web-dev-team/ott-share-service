@@ -3,6 +3,7 @@ package handler.member;
 import common.command.CommandHandler;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,5 +30,6 @@ public class LogoutHandler implements CommandHandler {
         HttpSession session = request.getSession();
         session.invalidate();
         return "/";
+
     }
     }

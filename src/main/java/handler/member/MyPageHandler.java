@@ -36,6 +36,7 @@ public class MyPageHandler implements CommandHandler {
         List<GroupDto> myGroup = groupDao.selectGroupsByMemberId((String)session.getAttribute("name"));
         request.setAttribute("myGroup", myGroup);
 
+
         // 내가 만든 그룹
         return url;
     }

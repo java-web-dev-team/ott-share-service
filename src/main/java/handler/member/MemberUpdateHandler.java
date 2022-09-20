@@ -34,7 +34,8 @@ public class MemberUpdateHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		request.setCharacterEncoding("UTF-8"); // 한글 깨짐을 방지
+		String url = "/member/mypage.do";
+		request.setCharacterEncoding("UTF-8"); // 한글 깨짐을 방지
 		// 폼에서 입력한 회원 정보 얻어오기
 		String userid = request.getParameter("member_id");
 		String pwd = request.getParameter("password");
@@ -49,6 +50,6 @@ public class MemberUpdateHandler implements CommandHandler {
 		MemberDao memberDao = new MemberDaoImpl();
 		memberDao.updateMember(memberDto);
 		response.sendRedirect("../mypage.do");
-		return null;
+		return url;
 	}
 }
