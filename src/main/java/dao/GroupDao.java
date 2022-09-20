@@ -230,7 +230,31 @@ public class GroupDao {
     }
 
 //    update Group -> groupName, ottId, content, period
-//    public GroupDto updateGroup(GroupDto groupDto) {
-//
-//    }
+    public GroupDto updateGroup(GroupDto groupDto) {
+        String selectSql = "update `group` set group_name = ?";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement preparedStatement = conn.prepareStatement(selectSql);
+            preparedStatement.setString(1, groupDto.getGroupName());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            GroupDto updatedGroup = new GroupDto();
+            while (resultSet.next()) {
+                groupDto.setId(resultSet.getInt("id"));
+                groupDto.setGroupName(resultSet.getString("group_name"));
+                groupDto.setOttId(resultSet.getInt("ott_id"));
+                groupDto.setCreatedDate(resultSet.getString("created_date"));
+                groupDto.setContent(resultSet.getString("content"));
+                groupDto.setPeriod(resultSet.getInt("period"));
+                groupDto.setMemberCount(resultSet.getInt("member_count"));
+            }
+
+            return updatedGroup;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 }

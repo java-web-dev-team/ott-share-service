@@ -1,12 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 <%@ page import="dto.GroupDto" %>
 <%@ page import="dao.GroupDao" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-<%
-	GroupDao groupDao = GroupDao.getInstance();
-	List<GroupDto> groups = groupDao.selectAllGroups();
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -293,93 +290,45 @@ section.notice {
 					<div class="container">
 						<table class="board-table">
 							<thead>
-								<th scope="col" class="th-ott">OTT</th>
-								<th scope="col" class="th-title">그룹이름</th>
-								<th scope="col" class="th-write">글쓴이</th>
-								<th scope="col" class="th-date">이용기간</th>
-								<th scope="col" class="th-state">모집여부</th>
-								</tr>
+								<th>OTT</th>
+								<th>그룹 이름</th>
+								<th>이용기간</th>
+								<th>모집여부</th>
 							</thead>
 							<tbody>
-								<tr>
-								<%
-									for (GroupDto group : groups) {
-										if (group.getOttId() == 1) {
-											out.write("<td>넷플릭스</td>");
-										} else if (group.getOttId() == 2) {
-											out.write("<td>왓챠</td>");
-										} else if (group.getOttId() == 3) {
-											out.write("<td>유튜브 프리미엄</td>");
-										} else if (group.getOttId() == 4) {
-											out.write("<td>티빙</td>");
-										} else if (group.getOttId() == 5) {
-											out.write("<td>웨이브</td>");
-										} else if (group.getOttId() == 6) {
-											out.write("<td>디즈니 플러스</td>");
-										} else if (group.getOttId() == 7) {
-											out.write("<td>아마존 플러스</td>");
-										}
-										out.write("<td>" + group.getGroupName() + "</td>");
-										out.write("<td>" + group.getOttId() + "</td>");
-										out.write("<td>" + group.getPeriod() + "</td>");
-										if (group.getMemberCount() < 4) {
-											out.write("<td>모집중</td>");
-										} else {
-											out.write("<td>마감<td>");
-										}
-									}
-								%>
-<%--							<c:forEach var="group" items="groups">--%>
-<%--								<tr>--%>
-<%--									<c:if test="${group.ottId == 1}">--%>
-<%--										<td>넷플릭스</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.ottId == 2}">--%>
-<%--										<td>왓챠</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.ottId == 3}">--%>
-<%--										<td>유튜브 프리미엄</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.ottId == 4}">--%>
-<%--										<td>티빙</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.ottId == 5}">--%>
-<%--										<td>웨이브</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.ottId == 6}">--%>
-<%--										<td>디즈니 플러스</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.ottId == 7}">--%>
-<%--										<td>아마존 플러스</td>--%>
-<%--									</c:if>--%>
-<%--									--%>
-<%--									<td>${group.ottId}</td>--%>
-<%--									<td>${group.period}</td>--%>
-<%--									<c:if test="${group.memberCount} < 4">--%>
-<%--										<td>모집중</td>--%>
-<%--									</c:if>--%>
-<%--									<c:if test="${group.memberCount} >= 4">--%>
-<%--										<td>마감</td>--%>
-<%--									</c:if>--%>
+								<c:forEach var="group" items="${groups}">
+									<tr>
+										<c:if test="${group.ottId == 1}">
+											<td>넷플릭스</td>
+										</c:if>
+										<c:if test="${group.ottId == 2}">
+											<td>왓챠</td>
+										</c:if>
+										<c:if test="${group.ottId == 3}">
+											<td>유튜브</td>
+										</c:if>
+										<c:if test="${group.ottId == 4}">
+											<td>티빙</td>
+										</c:if>
+										<c:if test="${group.ottId == 5}">
+											<td>웨이브</td>
+										</c:if>
+										<c:if test="${group.ottId == 6}">
+											<td>디즈니플러스</td>
+										</c:if>
+										<c:if test="${group.ottId == 7}">
+											<td>아마존플러스</td>
+										</c:if>
+										<td>${group.groupName}</td>
+										<td>${group.period}개월</td>
+										<c:if test="${group.memberCount < 4}">
+											<td>모집중</td>
+										</c:if>
+										<c:if test="${group.memberCount >= 4}">
+											<td>마감</td>
+										</c:if>
 									</tr>
-<%--							</c:forEach>--%>
-<%--								<tr>--%>
-<%--									<td>넷플릭스</td>--%>
-<%--									<td>영화를 사랑하시는 분</td>--%>
-<%--									<td>넷플영화광</td>--%>
-<%--									<td>12개월</td>--%>
-<%--									<td>3/4</td>--%>
-<%--									<td>모집완료</td>--%>
-<%--								</tr>--%>
-
-<%--								<tr>--%>
-<%--									<td>디즈니플러스</td>--%>
-<%--									<td>난 디플조아</td>--%>
-<%--									<td>라이언</td>--%>
-<%--									<td>3개월</td>--%>
-<%--									<td>1/4</td>--%>
-<%--									<td>모집중</td>--%>
-<%--								</tr>--%>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
