@@ -23,19 +23,23 @@ public class GroupDao {
     }
 
     //    그룹 생성
-    public int insertGroup(GroupDto groupDto) {
+    public void insertGroup(GroupDto groupDto) {
         //        중복검사
-        String confirmSql = "SELECT group_name FROM 'group' WHERE group_name = ?";
+        String confirmSql =
+                "SELECT IFNULL(" +
+                        "(" +
+                        "SELECT id " +
+                        "FROM `group` " +
+                        "WHERE group_name = '" +
+                        groupDto.getGroupName() +
+                        "'), 0) AS id";
         try {
             Connection conn = getConnection();
             PreparedStatement selectPs = conn.prepareStatement(confirmSql);
-            ResultSet rs = null;
-
-            selectPs.setString(1, groupDto.getGroupName());
-            rs = selectPs.executeQuery();
-
-            if (!rs.next()) {
-                String insertSql = "insert into `group` values (?, ?, ?, ?, ?, ?, ?)";
+            ResultSet resultSet = selectPs.executeQuery();
+            resultSet.next();
+            if (resultSet.getInt("id") == 0) {
+                String insertSql = "insert into `group` values (?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement insertPs = conn.prepareStatement(insertSql);
                 insertPs.setInt(1, 0);
                 insertPs.setString(2, groupDto.getGroupName());
@@ -44,14 +48,14 @@ public class GroupDao {
                 insertPs.setString(5, groupDto.getContent());
                 insertPs.setInt(6, groupDto.getPeriod());
                 insertPs.setInt(7, groupDto.getMemberCount());
-                return insertPs.executeUpdate();
+                insertPs.setInt(8, 0);
+                insertPs.executeUpdate();
             } else {
                 throw new SQLException();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
     }
 
     //    그룹 참여

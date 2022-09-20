@@ -3,9 +3,13 @@ package handler.group;
 import common.command.CommandHandler;
 import dao.GroupDao;
 import dto.GroupDto;
+import dto.MemberDto;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class GroupRecruitHandler implements CommandHandler {
@@ -14,9 +18,12 @@ public class GroupRecruitHandler implements CommandHandler {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+            throws ServletException, IOException {
         if(request.getMethod().equalsIgnoreCase("GET")) {
             return processForm(request, response);
+        }
+        else if(request.getMethod().equalsIgnoreCase("POST")) {
+            return processSubmit(request, response);
         }
         else {
             response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -24,28 +31,28 @@ public class GroupRecruitHandler implements CommandHandler {
         }
     }
 
-//    public GroupDto(Integer ottId, String groupName, String content, Integer period) {
-//        this.ottId = ottId;
-//        this.groupName = groupName;
-//        this.createdDate = LocalDate.now().toString();
-//        this.content = content;
-//        this.period = period;
-//        this.memberCount = 1;
-//    }
-
-    private String processForm(HttpServletRequest request, HttpServletResponse response) {
-        String url = "/group/groupRecruit.jsp";
+    private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+        String url = "/group/group-recruit.jsp";
+        HttpSession session = request.getSession();
 
         String ottId = request.getParameter("ottId");
         String groupName = request.getParameter("groupName");
         String content = request.getParameter("content");
         String period = request.getParameter("period");
-        request.setAttribute("groups", groupDao.insertGroup(new GroupDto(
+        GroupDto group = new GroupDto(
                 Integer.parseInt(ottId),
                 groupName,
                 content,
                 Integer.parseInt(period)
-        )));
+        );
+        groupDao.insertGroup(group);
+        request.setAttribute("group", group);
+        session.setAttribute("group", group);
         return url;
     }
+
+    private String processForm(HttpServletRequest request, HttpServletResponse response) {
+        return "url";
+    }
+
 }

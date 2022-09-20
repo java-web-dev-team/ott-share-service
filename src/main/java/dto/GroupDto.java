@@ -27,7 +27,7 @@ public class GroupDto {
         this.createdDate = LocalDate.now().toString();
         this.content = content;
         this.period = period;
-        this.memberCount = 1;
+        this.memberCount = 0;
     }
 
     //    public GroupDto updateGroupDto(Integer ottId, String groupName, Integer memberCount) {

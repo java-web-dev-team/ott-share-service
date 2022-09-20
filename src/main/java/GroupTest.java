@@ -8,12 +8,12 @@ public class GroupTest {
     public static void main(String[] args) {
 
         GroupDao groupDao = GroupDao.getInstance();
+        GroupDto groupDto2 = new GroupDto(1,"askfjwekfhakljw",  "모집중", 6);
 
 //        insertGroup test
-//        groupDAO.insertGroup(groupDto1);
+        groupDao.insertGroup(groupDto2);
 
 //        joinGroup test
-//        GroupDto groupDto2 = new GroupDto(1,"South",  "모집중", 6);
 //        groupDto2.setId(1);
 //
 //        groupDto2.setCreatedDate("2022-09-03");
@@ -25,7 +25,7 @@ public class GroupTest {
 //
 //        System.out.println(groupDAO.selectGroupsByMemberId("kmadsena"));
 
-        System.out.println(groupDao.selectAllGroups());
+//        System.out.println(groupDao.selectAllGroups());
 
     }
 }

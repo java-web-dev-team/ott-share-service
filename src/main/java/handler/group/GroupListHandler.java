@@ -25,7 +25,7 @@ public class GroupListHandler implements CommandHandler {
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {
-        String url = "/group/groupList.jsp";
+        String url = "/group/group-list.jsp";
 //        String searchKeyword = request.getParameter("searchKeyword");
 //        groups.selectGroupsByGroupName(searchKeyword);
         List<GroupDto> groups = groupDao.selectAllGroups();
