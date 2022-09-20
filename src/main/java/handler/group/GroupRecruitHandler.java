@@ -52,7 +52,7 @@ public class GroupRecruitHandler implements CommandHandler {
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {
-        return "url";
+        return "/group/group-recruit.jsp";
     }
 
 }
