@@ -46,6 +46,8 @@ public class GroupRecruitHandler implements CommandHandler {
                 Integer.parseInt(period)
         );
         groupDao.insertGroup(group);
+        Object member = session.getAttribute("member");
+        groupDao.joinGroup((MemberDto) member, group);
         request.setAttribute("group", group);
         session.setAttribute("group", group);
         return url;
