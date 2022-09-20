@@ -50,9 +50,10 @@ public class GroupDao {
                 insertPs.setInt(7, groupDto.getMemberCount());
                 insertPs.setInt(8, 0);
                 insertPs.executeUpdate();
-            } else {
-                throw new SQLException();
             }
+//            else {
+//                throw new SQLException();
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

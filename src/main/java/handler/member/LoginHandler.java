@@ -27,7 +27,7 @@ public class LoginHandler implements CommandHandler {
     private String processForm(HttpServletRequest request, HttpServletResponse response){
         String url = "/member/loginForm.jsp";
         HttpSession session = request.getSession();
-        if (session.getAttribute("loginUser") != null) {
+        if (session.getAttribute("member") != null) {
             return "/member/main.jsp";
         }
 
@@ -43,7 +43,7 @@ public class LoginHandler implements CommandHandler {
         if( result == 1){
             MemberDto memberDto = memberDao.getMember(userid);
             HttpSession session = request.getSession();
-            session.setAttribute("loginUser", memberDto);
+            session.setAttribute("member", memberDto);
             request.setAttribute("msg", "로그인 성공");
             return processForm(request, response);
         } else if(result== 0){

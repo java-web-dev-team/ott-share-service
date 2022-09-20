@@ -142,12 +142,11 @@ body {
 
 		<div class="screen">
 
-			<div class="join-page">
+			<div class="register-page">
 				<div class="form">
-					<form class="join-form" action="join.do" method="post" name="frm">
+					<form class="register-form" action="register.do" method="post" name="frm">
 						<p style="margin-top: -15px">회원가입</p>
-						<input type="text" name="userid" placeholder="아이디"
-							value="${userid}" />
+						<input type="text" name="id" placeholder="아이디" value="${id}" />
 						<button type="submit" name="중복확인" value="중복확인" style="margin-bottom: 15px">중복확인</button>
 						<input type="text" name="nickname" placeholder="닉네임">
 						<input type="password" name="pwd" placeholder="비밀번호" />

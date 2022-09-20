@@ -145,12 +145,33 @@ body {
 			<div class="login-page">
 				<div class="form">
 					<form class="login-form" action="login.do" method="post" name="frm">
-						<input type="text" name="memberId" placeholder="아이디"	value="${loginUser.memberId}" />
+						<input type="text" name="memberId" placeholder="아이디"	value="${member.memberId}" />
 						<input type="password" name="password" placeholder="비밀번호" />
 						<button>login</button>
 						<p class="message">
-							Not registered? <a href="join.do">Create an account</a>
+							Not registered? <a href="register.do">Create an account</a>
 						</p>
+						<script>
+							function formCheck(frm) {
+								let msg ='';
+								if(frm.memberId.value.length==0) {
+									setMessage('id를 입력해주세요.', frm.memberId);
+									return true;
+								}
+								if(frm.password.value.length==0) {
+									setMessage('password를 입력해주세요.', frm.password);
+									return true;
+								}
+								return true;
+							}
+							function setMessage(msg, element){
+								document.getElementById("msg").innerHTML = ` ${'${msg}'}`;
+								if(element) {
+									element.select();
+								}
+							}
+						</script>
+
 					</form>
 				</div>
 			</div>
