@@ -21,6 +21,8 @@ public class GroupDao {
         }
         return instance;
     }
+
+
 //  ---recruit.do
     //   그룹 생성
     public void insertGroup(GroupDto groupDto) {
@@ -70,7 +72,7 @@ public class GroupDao {
         try {
             Connection conn = getConnection();
             if (groupDto.getMemberCount() < 4) {    //  memberCount 확인
-//            info 등록
+        //      info 등록
                 PreparedStatement preparedStatement = conn.prepareStatement(insertSql);
                 preparedStatement.setInt(1, 0);
                 preparedStatement.setInt(2, groupDto.getOttId());
@@ -366,6 +368,7 @@ public class GroupDao {
             throw new RuntimeException(e);
         }
     }
+
 //    관리자 페이지 --end--
 
 }
