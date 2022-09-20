@@ -95,6 +95,11 @@ public class GroupDao {
                     updatedGroup.setMemberCount(resultSet.getInt("member_count"));
                 }
 
+                if (updatedGroup.getMemberCount() == 4) {
+                    String sql = "update `group` set full = 1 where id = " + updatedGroup.getId();
+                    PreparedStatement updatePs = conn.prepareStatement(sql);
+                    updatePs.executeUpdate();
+                }
                 return updatedGroup;
             } else {
                 throw new RuntimeException();   //  TODO: 적절한 exception 사용 필요
