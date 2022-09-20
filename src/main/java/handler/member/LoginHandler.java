@@ -44,6 +44,7 @@ public class LoginHandler implements CommandHandler {
             MemberDto memberDto = memberDao.getMember(userid);
             HttpSession session = request.getSession();
             session.setAttribute("member", memberDto);
+            session.setAttribute("name", memberDto.getMemberId());
             request.setAttribute("msg", "로그인 성공");
             return processForm(request, response);
         } else if(result== 0){

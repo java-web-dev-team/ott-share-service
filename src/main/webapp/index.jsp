@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -78,15 +77,8 @@ animation-duration : 2s;
 			<a href='index.do'> <img src="pizza.png"
 				style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
 			<ul class="menu" style="display: inline-table;">
-				<c:if test="${sessionScope.member==null}">
-					<li id="로그인" onclick="location.href='/member/login.do'"><a href="#">로그인</a></li>
-					<li id="나의피자"><a href="#">마이페이지</a></li>
-				</c:if>
-				<c:if test="${sessionScope.member!=null}">
-					<li id="로그인" onclick="location.href='/member/logout.do'"><a href="#">로그아웃</a></li>
-					<li id="나의피자"><a href="#">마이페이지</a></li>
-				</c:if>
-
+				<li id="로그인" onclick="location.href='/member/login.do'"><a href="#">로그인</a></li>
+				<li id="나의피자"><a href="#">나의 피자</a></li>
 				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
 				<li id="그룹찾기"><a href="#">그룹 찾기</a></li>
 				<li id="그룹모집"><a href='../group/recruit.do'>그룹 모집</a></li>
@@ -100,17 +92,13 @@ animation-duration : 2s;
 		<div class="screen">
 			<div style="text-align: center; margin-top:100px;">
 			<div class="ott">
-				<c:if test="${sessionScope.member == null}">
-					<a href="/member/login.do"><img src="/img/netflix.png" style="margin: 50px"></a>
-					<a href="/member/login.do"><img src="/img/disney+.png" style="margin: 50px"></a>
-					<a href="/member/login.do"><img src="/img/tiving.png" style="margin: 50px"></a>
-					<br>
-					<a href="/member/login.do"><img src="/img/youtube.png" style="margin: 50px"></a>
-					<a href="/member/login.do"><img src="/img/wacha.png" style="margin: 50px"></a>
-					<a href="/member/login.do"><img src="/img/wave.png" style="margin: 50px"></a>
-					<a href="/member/login.do"><img src="/img/wave.png" style="margin: 50px"></a>
-				</c:if>
-
+				<a href="/member/login.do"><img src="netflix.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="disney+.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="tiving.png" style="margin: 50px"></a>
+				<br>
+				<a href="login.do"><img src="youtube.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="wacha.png" style="margin: 50px"></a>
+				<a href="login.do"><img src="wave.png" style="margin: 50px"></a>
 				</div>
 					<img src="notice1.png">
 				</div>

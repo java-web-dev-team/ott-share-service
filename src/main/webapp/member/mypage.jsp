@@ -22,6 +22,7 @@
 				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
 				<li id="그룹찾기"><a href="#">그룹 찾기</a></li>
 				<li id="그룹모집"><a href='../board/list.do'>그룹 모집</a></li>
+                <li id="home"><a href="/index.do">home</a></li>
 			</ul>
 		</div>
 		<hr>
@@ -42,7 +43,8 @@
                             <h5 class="card-title">개인 정보</h5>
                             <p class="card-text">Email : aaaa@naver.com</p>
                             <p class="card-text">닉네임 : 나 홍길동</p>
-                            <a href="#" class="btn btn-primary">개인 정보 수정</a>
+                            <a href="update.do" class="btn btn-primary">개인 정보 수정</a>
+
                           </div>
                         </div>
                         <div class="card" style="margin-top: 1%;">
@@ -52,13 +54,11 @@
                                       text-align: left;
                                   }
                               </style>
-                            내가 쓴 게시물
+                              내가 쓴 게시물
                           </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="view.html">넷플릭스 구합니다.</a></li>
-                            <li class="list-group-item"><a href="view.html">왓챠 6개월 구합니다.</a></li>
-                            <li class="list-group-item"><a href="view.html">디즈니 같이하실분 구합니다.</a></li>
-                          </ul>
+                            <c:forEach var="group" items="${myGroup}">
+                         ${group.groupName}
+                            </c:forEach>
                         </div>
                         
                         </div>
