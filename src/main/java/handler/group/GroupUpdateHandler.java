@@ -32,11 +32,6 @@ public class GroupUpdateHandler implements CommandHandler {
         String url = "/group/group-update.jsp";
         HttpSession session = request.getSession();
 
-        String updatedGroupName = request.getParameter("groupName");
-        String updatedOttId = request.getParameter("ottId");
-        String updatedContent = request.getParameter("content");
-        String updatedPeriod = request.getParameter("period");
-
         GroupDto sessionGroup = (GroupDto) session.getAttribute("group");
 
         GroupDto updatedGroup = new GroupDto(
@@ -54,7 +49,7 @@ public class GroupUpdateHandler implements CommandHandler {
                         sessionGroup.getPeriod()
         );
 
-        GroupDto resultGroup = groupDao.updateGroup(updatedGroup, sessionGroup);
+        GroupDto resultGroup = groupDao.updateGroup(updatedGroup);
         request.setAttribute("group", resultGroup);
         session.setAttribute("group", resultGroup);
         return url;
