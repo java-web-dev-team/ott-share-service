@@ -198,6 +198,25 @@ public class GroupDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void deleteGroup(String groupName) {
+        String deleteFromGroupSql = "delete from `group` where group_name = ?";
+        String deleteFromInfoSql = "delete from info where group_name = ?";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement deleteFromGroupPs = conn.prepareStatement(deleteFromGroupSql);
+            deleteFromGroupPs.setString(1, groupName);
+            deleteFromGroupPs.executeUpdate();
+
+            PreparedStatement deleteFromInfoPs = conn.prepareStatement(deleteFromInfoSql);
+            deleteFromInfoPs.setString(1, groupName);
+            deleteFromInfoPs.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 //    ---detail.do --end--
 
 
