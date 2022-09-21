@@ -49,7 +49,7 @@ public class GroupUpdateHandler implements CommandHandler {
                         sessionGroup.getPeriod()
         );
 
-        GroupDto resultGroup = groupDao.updateGroup(updatedGroup);
+        GroupDto resultGroup = groupDao.updateGroup(sessionGroup, updatedGroup);
         request.setAttribute("group", resultGroup);
         session.setAttribute("group", resultGroup);
         return url;

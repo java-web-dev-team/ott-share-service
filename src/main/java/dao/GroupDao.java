@@ -121,7 +121,7 @@ public class GroupDao {
     }
 
     //    update Group -> groupName, ottId, content, period
-    public GroupDto updateGroup(GroupDto updatedGroup) {
+    public GroupDto updateGroup(GroupDto sessionGroup, GroupDto updatedGroup) {
         //  그룹 수정 쿼리문
         String updateGroupSql = "update `group` " +
                 "set group_name = ?, ott_id = ?, content = ?, period = ? " +
@@ -140,7 +140,7 @@ public class GroupDao {
             updateGroupPs.setInt(2, updatedGroup.getOttId());
             updateGroupPs.setString(3, updatedGroup.getContent());
             updateGroupPs.setInt(4, updatedGroup.getPeriod());
-            updateGroupPs.setString(5, updatedGroup.getGroupName());
+            updateGroupPs.setString(5, sessionGroup.getGroupName());
             updateGroupPs.executeUpdate();
 
             //  update Info

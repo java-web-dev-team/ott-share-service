@@ -58,6 +58,37 @@ public class ArticleDao {
 
     }
 
+    public ArticleDto updateArticle(ArticleDto sessionArticle, ArticleDto updatedArticle) {
+        ArticleDto resultArticle = new ArticleDto();
+
+        String updateSql = "update article set ott_id = ?, title = ?, content = ? where title = ?";
+        String selectSql = "select * from article where title = ?";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement updatePs = conn.prepareStatement(updateSql);
+            updatePs.setInt(1, updatedArticle.getOttId());
+            updatePs.setString(2, updatedArticle.getTitle());
+            updatePs.setString(3, updatedArticle.getContent());
+            updatePs.setString(4, sessionArticle.getTitle());
+            updatePs.executeUpdate();
+
+            PreparedStatement selectPs = conn.prepareStatement(selectSql);
+            selectPs.setString(1, updatedArticle.getTitle());
+            ResultSet resultSet = selectPs.executeQuery();
+            while (resultSet.next()) {
+                resultArticle.setTitle(resultSet.getString("title"));
+                resultArticle.setContent(resultSet.getString("content"));
+                resultArticle.setOttId(resultSet.getInt("ott_id"));
+                resultArticle.setCreatedBy(resultSet.getString("member_id"));
+                resultArticle.setCreatedDate(resultSet.getString("created_date"));
+            }
+            return resultArticle;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<ArticleDto> findAll() {
         List<ArticleDto> findAll = new ArrayList<>();
 
