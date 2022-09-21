@@ -117,7 +117,7 @@ section.notice {
 
 table td, th {
 	border: #d3d3d3 solid 1px; /* 경계선 색상 스타일 굵기 */
-	padding: 5px; /* 안쪽 여백 */
+
 }
 
 .table {
@@ -168,32 +168,32 @@ table td, th {
 						<option value="wavve">wavve</option>
 				</select></td>
 						<th style=" width:190px;">비밀번호</th>
-						<td><input type="password" name="text" style="width:100%; border: 0;"></td>
+						<td><input type="password" name="text" style="width: 99%;height: 100%;border: 0;"></td>
 				</tr>
 
 				<tr>
 					<th>닉네임</th>
-					<td><input type="text" name="text" style="width:100%; border: 0;"></td>
+					<td><input type="text" name="text" style="width: 99%;height: 100%;border: 0;"></td>
 					<th>제목</th>
-					<td><input type="text" name="text" style="width:100%; border: 0;"></td>
+					<td><input type="text" name="text" style="width: 99%;height: 100%;border: 0;"></td>
 				</tr>
 				
 				<tr>
 					<th>내용</th>
-					<td colspan="3"><textarea name="content" rows="10" style="width:100%; border: 0; resize: none;"></textarea></td>
+					<td colspan="3"><textarea name="content" rows="10" style="width:98%; height:98%; border: 0; resize: none;"></textarea></td>
 				</tr>
 				
 				<tr>
 				<th>기간</th>
-					<td><input type="text" style="border:0;" name="jdate" size="1" required>개월</td>
+					<td><input type="text" name="text" style="width: 50%;height: 98%;border: 0;">개월</td>
 					<th>모집인원</th>
-					<td><input type="text" style="border:0;" size="1" name="person" required>/
-					<input type="text" style="border:0;" size="1" name="person" required>명
+					<td><input type="text" name="text" style="width: 30%;height: 100%;border: 0;">/
+					<input type="text" name="text" style="width: 30%;height: 100%;border: 0;">명
 				</tr>
 			</table>
-						<br> <img src="등록.png"> 
-						<img src="목록.png" onclick="location.href='list.do'">
                 </section>
+                <br> <img src="등록.png" style="margin-left: 80px;"> 
+						<img src="목록.png" style="margin-left: 80px;" onclick="location.href='list.do'">
                 </div>
                 </body>
                 </html>
