@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
-<script type="text/javascript" src="js/member.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <style>
 
 
@@ -73,18 +73,7 @@ animation-duration : 2s;
 <body>
 
 	<header style="height: 150px">
-		<div class="screen">
-			<a href='index.do'> <img src="pizza.png"
-				style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
-			<ul class="menu" style="display: inline-table;">
-				<li id="로그인" onclick="location.href='/member/login.do'"><a href="#">로그인</a></li>
-				<li id="나의피자"><a href="#">나의 피자</a></li>
-				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
-				<li id="그룹찾기"><a href="/group/list.do">그룹 찾기</a></li>
-				<li id="그룹모집"><a href='../group/recruit.do'>그룹 모집</a></li>
-			</ul>
-		</div>
-		<hr>
+		<%@ include file="/common/header.jsp"%>
 	</header>
 
 
@@ -92,18 +81,67 @@ animation-duration : 2s;
 		<div class="screen">
 			<div style="text-align: center; margin-top:100px;">
 			<div class="ott">
-				<a href="/member/login.do"><img src="/img/netflix.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="/img/disney+.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="/img/tiving.png" style="margin: 50px"></a>
+<%--				넷플릭스 - value = 1--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/netflix.png" style="margin: 50px" value = "1"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/netflix.png" style="margin: 50px" value="1"></a>
+				</c:if>
+
+	<%--				왓챠 - value = 2--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/wacha.png" style="margin: 50px" value="2"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/wacha.png" style="margin: 50px" value="2"></a>
+				</c:if>
+
+<%--				유튜브 - value = 3--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/youtube.png" style="margin: 50px" value="3"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/youtube.png" style="margin: 50px" value="3"></a>
+				</c:if>
 				<br>
-				<a href="login.do"><img src="/img/youtube.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="/img/wacha.png" style="margin: 50px"></a>
-				<a href="login.do"><img src="/img/wave.png" style="margin: 50px"></a>
-				</div>
+
+<%--				티빙 = value = 4--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/tiving.png" style="margin: 50px" value="4"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/tiving.png" style="margin: 50px" value="4"></a>
+				</c:if>
+
+<%--				웨이브 = value = 5--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/wave.png" style="margin: 50px" value="5"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/wave.png" style="margin: 50px" value="5"></a>
+				</c:if>
+
+<%--				디즈니 - value = 6--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/disney.png" style="margin: 50px" value="6"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/disney.png" style="margin: 50px" value="6"></a>
+				</c:if>
+
+<%--				아마존 - value = 7--%>
+				<c:if test="${sessionScope.member == null}">
+					<a href="/member/login.do"><img src="/img/amazon.png" style="margin: 50px" value="7"></a>
+				</c:if>
+				<c:if test="${sessionScope.member != null}">
+					<a href="/main/select-service.do"><img src="/img/amazon.png" style="margin: 50px" value="7"></a>
+				</c:if>
+			</div>
 					<img src="notice1.png">
 				</div>
 		</div>
 		</section>
-		
+
 	</body>
 </html>
