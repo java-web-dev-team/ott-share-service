@@ -140,7 +140,7 @@ table td, th {
 		<section class="notice">
 			<div class="page-title">
 				<div class="container">
-					<h3>게시글 상세보기</h3>
+					<h3>그룹 상세</h3>
 				</div>
 			</div>
 
