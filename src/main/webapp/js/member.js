@@ -5,7 +5,7 @@
     // window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
     // 다른 방법 : Ajax를 사용해서 서버와 통신해서 아이디 중복체크를 할 수 있음
     // 별도로 윈도우 팝업창을 띄우지 않음
-}
+
 
 function idok(id) {
     // opener: registerForm.jsp, document: idCheck.jsp
