@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-	session.getAttribute("group");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,19 +210,6 @@ table td, th {
 			</c:if>
 </form>
 			<form action="update.do" method="get"><button type="submit">수정</button> </form>
-
-
-
-<%--			<!-- 게시글 수정/삭제를 위해 본인 확인이 필요하고, 이를 팝업창을 띄워서 하고 있음--%>
-<%--			2. Ajax(javascript/jQuery)를 이용해서 서버와 통신하여 비밀번호 확인을 할 수 있음.--%>
-<%-- -->--%>
-<%--			<br> <br> <input type="button" value="게시글 수정"--%>
-<%--				onclick="open_win('check_pass.do?num=${board.num}', 'update')">--%>
-<%--			<input type="button" value="게시글 삭제"--%>
-<%--				onclick="open_win('check_pass.do?num=${board.num}', 'delete')">--%>
-<%--			<input type="button" value="게시글 리스트"--%>
-<%--				onclick="location.href='list.do'"> <input type="button"--%>
-<%--				value="게시글 등록" onclick="location.href='write.do'">--%>
 	</div>
 </body>
 </html>
