@@ -49,7 +49,7 @@ public class MemberRegisterHandler implements CommandHandler {
         memberDto.setNickname(nickname);
         memberDto.setPhone(phone);
 
-        if(memberDao.confirmID(id) == -1){
+        if(memberDao.confirmID(id) == -1 && memberDto.getPassword() != null){
             memberDao.insertMember(memberDto);
 
             HttpSession session = request.getSession();
