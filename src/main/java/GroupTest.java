@@ -51,7 +51,9 @@ public class GroupTest {
                 updatedPeriod != null ? updatedPeriod : sessionGroup.getPeriod()
         );
 
-        groupDao.updateGroup(updatedGroup, sessionGroup);
+//        groupDao.updateGroup(updatedGroup, sessionGroup);
+
+        groupDao.deleteGroup("test1");
 
 
     }

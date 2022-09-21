@@ -123,9 +123,10 @@ public class GroupDao {
     //    update Group -> groupName, ottId, content, period
     public GroupDto updateGroup(GroupDto updatedGroup, GroupDto sessionGroup) {
         //  그룹 수정 쿼리문
-        String updateSql = "update `group` " +
+        String updateGroupSql = "update `group` " +
                 "set group_name = ?, ott_id = ?, content = ?, period = ? " +
                 "where group_name = ?";
+        String updateInfoSql = "update info set group_name = ?, ott_id = ?";
 
         //  수정된 그룹 반환 쿼리문
         String selectSql = "select * from `group` where group_name = ?";
@@ -133,14 +134,20 @@ public class GroupDao {
         try {
             assert conn != null;
 
-            //  update
-            PreparedStatement updatePs = conn.prepareStatement(updateSql);
-            updatePs.setString(1, updatedGroup.getGroupName());
-            updatePs.setInt(2, updatedGroup.getOttId());
-            updatePs.setString(3, updatedGroup.getContent());
-            updatePs.setInt(4, updatedGroup.getPeriod());
-            updatePs.setString(5, sessionGroup.getGroupName());
-            updatePs.executeUpdate();
+            //  update Group
+            PreparedStatement updateGroupPs = conn.prepareStatement(updateGroupSql);
+            updateGroupPs.setString(1, updatedGroup.getGroupName());
+            updateGroupPs.setInt(2, updatedGroup.getOttId());
+            updateGroupPs.setString(3, updatedGroup.getContent());
+            updateGroupPs.setInt(4, updatedGroup.getPeriod());
+            updateGroupPs.setString(5, sessionGroup.getGroupName());
+            updateGroupPs.executeUpdate();
+
+            //  update Info
+            PreparedStatement updateInfoPs = conn.prepareStatement(updateInfoSql);
+            updateInfoPs.setString(1, updatedGroup.getGroupName());
+            updateInfoPs.setInt(2, updatedGroup.getOttId());
+            updateInfoPs.executeUpdate();
 
             //  select
             PreparedStatement selectPs = conn.prepareStatement(selectSql);
@@ -187,6 +194,25 @@ public class GroupDao {
             }
 
             return nicknames;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteGroup(String groupName) {
+        String deleteFromGroupSql = "delete from `group` where group_name = ?";
+        String deleteFromInfoSql = "delete from info where group_name = ?";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement deleteFromGroupPs = conn.prepareStatement(deleteFromGroupSql);
+            deleteFromGroupPs.setString(1, groupName);
+            deleteFromGroupPs.executeUpdate();
+
+            PreparedStatement deleteFromInfoPs = conn.prepareStatement(deleteFromInfoSql);
+            deleteFromInfoPs.setString(1, groupName);
+            deleteFromInfoPs.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

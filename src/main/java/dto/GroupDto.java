@@ -29,11 +29,4 @@ public class GroupDto {
         this.period = period;
         this.memberCount = 0;
     }
-
-    //    public GroupDto updateGroupDto(Integer ottId, String groupName, Integer memberCount) {
-//        this.setOttId(ottId);
-//        this.setGroupName(groupName);
-//
-//        return this;
-//    }
 }
