@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 폼</title>
-<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript" src="../js/member.js"></script>
 <style>
 .screen {
 	width: 1280px;

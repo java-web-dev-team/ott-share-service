@@ -7,7 +7,7 @@ function idCheck() {
     // 정규표현식을 사용해서 아이디에 대한 유효성 검사를 할 수 있음.
     // 아이디 중복체크를 수행하는 새로운 팝업창을 띄웠다.
     // 현재 경로가 '/'(현재 url은 /join.do)이므로, url="idCheck.do" 을 사용 가능
-    var url = "idCheck.do?userid=" + document.frm.member_id.value;
+    var url = "idCheck.do?userid=" + document.frm.memberId.value;
     window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
     // 다른 방법 : Ajax를 사용해서 서버와 통신해서 아이디 중복체크를 할 수 있음
     // 별도로 윈도우 팝업창을 띄우지 않음
@@ -18,7 +18,7 @@ function idok(id) {
     // 아이디 중복체크한 값으로 id를 반영
     opener.frm.id.value = document.frm.member_id.value;
     // 중복확인이 성공되었다는 것을 표시
-    opener.frm.id.value = document.frm.member_id.value;
+    opener.frm.id.value = document.frm.memberId.value;
     self.close();	// 팝업창을 닫는다.
 }
 
@@ -28,14 +28,14 @@ function joinCheck() {
         frm.name.focus();
         return false;
     }
-    if (document.frm.member_id.value.length == 0) {
+    if (document.frm.memberId.value.length == 0) {
         alert("아이디를 써주세요");
-        frm.member_id.focus();
+        frm.memberId.focus();
         return false;
     }
-    if (document.frm.member_id.value.length < 4) {
+    if (document.frm.memberId.value.length < 4) {
         alert("아이디는 4글자이상이어야 합니다.");
-        frm.member_id.focus();
+        frm.memberId.focus();
         return false;
     }
     if (document.frm.pwd.value == "") {
@@ -50,7 +50,7 @@ function joinCheck() {
     }
     if (document.frm.reid.value.length == 0) {
         alert("중복 체크를 하지 않았습니다.");
-        frm.member_id.focus();
+        frm.memberId.focus();
         return false;
     }
     return true;
@@ -68,15 +68,24 @@ function joinCheck() {
 	//지난 평가에서 정답으로 준것을 참고해서 유효성 검사를 할 줄 알아야 할 것 같습니다.
 
 function loginCheck() {
-    if (document.frm.member_id.value.length == 0) {
-        alert("아이디를 써주세요");
-        frm.member_id.focus();
+    if (document.frm.memberId.value.length == 0) {
+        alert("아이디를 입력해주세요.");
+        setMessage('id를 입력해주세요.', frm.memberId);
+        frm.memberId.focus();
         return false;
     }
-    if (document.frm.pwd.value == "") {
-        alert("암호는 반드시 입력해야 합니다.");
-        frm.pwd.focus();
+    if (document.frm.password.value == "") {
+        alert("패스워드를 입력해주세요.");
+        setMessage('패스워드를 입력해주세요.', frm.password);
+        frm.password.focus();
         return false;
     }
     return true;
+}
+
+function setMessage(msg, elements){
+    document.getElementById("msg").innerHTML = `${'${msg}'}`;
+    if(elements){
+        elements.select();
+    }
 }

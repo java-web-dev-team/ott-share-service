@@ -41,12 +41,18 @@ public class LoginHandler implements CommandHandler {
         String userid = request.getParameter("memberId");
         String pwd = request.getParameter("password");
         MemberDao memberDao = new MemberDaoImpl();
+        MemberDto memberDto = memberDao.getMember(userid);
+        HttpSession session = request.getSession();
+        if (memberDao.getMember(userid) == null) {
+            request.setAttribute("msg", "존재하지 않는 회원입니다.");
+        }
         int result = memberDao.userCheck(userid, pwd);
         if( result == 1){
-            MemberDto memberDto = memberDao.getMember(userid);
-            HttpSession session = request.getSession();
             session.setAttribute("member", memberDto);
             session.setAttribute("name", memberDto.getMemberId());
+            session.setAttribute("password", memberDto.getPassword());
+            session.setAttribute("nickname", memberDto.getNickname());
+            session.setAttribute("phone", memberDto.getPhone());
             if(rememberId != null){
                 Cookie cookie = new Cookie("userid", userid);
                 response.addCookie(cookie);
@@ -55,12 +61,9 @@ public class LoginHandler implements CommandHandler {
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
-
             return processForm(request, response);
-        } else if(result== 0){
+        } else if(result == 0){
             request.setAttribute("msg", "비밀번호가 틀립니다. ");
-        } else{
-            request.setAttribute("msg", "존재하지 않는 회원입니다. ");
         }
 
         return url;

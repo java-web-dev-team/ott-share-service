@@ -44,6 +44,8 @@
                             <p class="card-text">Email : aaaa@naver.com</p>
                             <p class="card-text">닉네임 : 나 홍길동</p>
                             <a href="update.do" class="btn btn-primary">개인 정보 수정</a>
+                              <br>
+                              <a href="memberDelete.do" class="btn btn-primary">회원 탈퇴</a>
 
                           </div>
                         </div>
