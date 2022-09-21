@@ -41,9 +41,10 @@
                           <h5 class="card-header">회원 정보</h5>
                           <div class="card-body">
                             <h5 class="card-title">개인 정보</h5>
-                            <p class="card-text">Email : aaaa@naver.com</p>
-                            <p class="card-text">닉네임 : 나 홍길동</p>
-                            <a href="update.do" class="btn btn-primary">개인 정보 수정</a>
+                              <p class="card-text">id : ${sessionScope.member.memberId}</p>
+                              <p class="card-text1">닉네임 : ${sessionScope.member.nickname}</p>
+                              <p class="card-text2">휴대폰 : ${sessionScope.member.phone}</p>
+                              <a href="update.do" class="btn btn-primary">개인 정보 수정</a>
                               <br>
                               <a href="memberDelete.do" class="btn btn-primary">회원 탈퇴</a>
 

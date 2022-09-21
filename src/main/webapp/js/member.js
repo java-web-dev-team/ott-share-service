@@ -1,14 +1,8 @@
-function idCheck() {
-    if(document.frm.userid.value == "") {
-        alert("아이디를 입력하여 주십시요.");
-        document.frm.memberId.focus();	// 포커스를 아이디 입력 태그로 이동
-        return;
-    }
-    // 정규표현식을 사용해서 아이디에 대한 유효성 검사를 할 수 있음.
+ // 정규표현식을 사용해서 아이디에 대한 유효성 검사를 할 수 있음.
     // 아이디 중복체크를 수행하는 새로운 팝업창을 띄웠다.
     // 현재 경로가 '/'(현재 url은 /join.do)이므로, url="idCheck.do" 을 사용 가능
-    var url = "idCheck.do?userid=" + document.frm.memberId.value;
-    window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
+    // var url = "idCheck.do?userid=" + document.frm.memberId.value;
+    // window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
     // 다른 방법 : Ajax를 사용해서 서버와 통신해서 아이디 중복체크를 할 수 있음
     // 별도로 윈도우 팝업창을 띄우지 않음
 }
@@ -28,27 +22,23 @@ function joinCheck() {
         frm.name.focus();
         return false;
     }
-    if (document.frm.memberId.value.length == 0) {
+    if (document.frm.id.value.length == 0) {
         alert("아이디를 써주세요");
         frm.memberId.focus();
         return false;
     }
-    if (document.frm.memberId.value.length < 4) {
-        alert("아이디는 4글자이상이어야 합니다.");
-        frm.memberId.focus();
-        return false;
-    }
-    if (document.frm.pwd.value == "") {
+
+    if (document.frm.password.value == "") {
         alert("암호는 반드시 입력해야 합니다.");
         frm.pwd.focus();
         return false;
     }
-    if (document.frm.pwd.value != document.frm.pwd_check.value) {
+    if (document.frm.password.value != document.frm.pwd_check.value) {
         alert("암호가 일치하지 않습니다.");
-        frm.pwd.focus();
+        frm.pwd_check.focus();
         return false;
     }
-    if (document.frm.reid.value.length == 0) {
+    if (document.frm.reId.value.length == 0) {
         alert("중복 체크를 하지 않았습니다.");
         frm.memberId.focus();
         return false;

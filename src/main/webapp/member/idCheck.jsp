@@ -9,7 +9,7 @@
     <!-- 자바스크립트 파일을 절대 경로를 사용해서 지정
         절대경로를 사용할 때 c:url JSTL 태그를 사용
       -->
-    <script type="text/javascript" src="<c:url value="/js/member.js" />"></script>
+    <script type="text/javascript" src="<c:url value="../js/member.js" />"></script>
 </head>
 <body>
 <h2>아이디 중복 확인</h2>
@@ -27,7 +27,9 @@
     </script>
     ${id}는 이미 사용중인 아이디입니다.
 </c:if>
+
 <!-- 사용 가능한 아이디 : result(-1) -->
+
 <c:if test="${result == -1}">
     ${id}은 사용 가능한 아이디입니다.
     <input type="button" value="사용" class="cancel" onclick="idok('${id}')">

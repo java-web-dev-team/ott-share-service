@@ -50,9 +50,6 @@ public class LoginHandler implements CommandHandler {
         if( result == 1){
             session.setAttribute("member", memberDto);
             session.setAttribute("name", memberDto.getMemberId());
-            session.setAttribute("password", memberDto.getPassword());
-            session.setAttribute("nickname", memberDto.getNickname());
-            session.setAttribute("phone", memberDto.getPhone());
             if(rememberId != null){
                 Cookie cookie = new Cookie("userid", userid);
                 response.addCookie(cookie);

@@ -36,6 +36,7 @@ public class MemberRegisterHandler implements CommandHandler {
             e.printStackTrace();
         }
 
+
         String id = request.getParameter("id");
         String password = request.getParameter("pwd");
         String nickname = request.getParameter("nickname");
@@ -58,4 +59,7 @@ public class MemberRegisterHandler implements CommandHandler {
             return "/member/loginForm.jsp";
         }
     }
+
+
+
 }

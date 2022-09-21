@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="dao.MemberDaoImpl"%>
+<%@ page import="java.lang.reflect.Member" %>
+<%@ page import="dao.MemberDao" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,10 +148,10 @@ body {
 
 			<div class="register-page">
 				<div class="form">
-					<form class="register-form" action="register.do" method="post" name="frm">
+					<form class="register-form" action="register.do" method="post" name="frm" onclick="joinCheck()">
 						<p style="margin-top: -15px">회원가입</p>
-						<input type="text" name="id" placeholder="아이디" value="${id}" />
-						<button type="submit" name="중복확인" value="중복확인" style="margin-bottom: 15px">중복확인</button>
+						<input type="text" name="id" placeholder="아이디" />
+						<button type="submit" name="reId" value="중복확인" style="margin-bottom: 15px" onclick="" >중복확인</button>
 						<input type="text" name="nickname" placeholder="닉네임">
 						<input type="password" name="pwd" placeholder="비밀번호" />
 						<input type="password" name="pwd_check" placeholder="비밀번호 확인">
@@ -161,6 +165,8 @@ body {
 			</div>
 		</div>
 	</section>
+
+<script> src = "js/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>
