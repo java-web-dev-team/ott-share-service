@@ -7,10 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+         pageEncoding="UTF-8" %>
+<link rel="stylesheet" type="text/css" href="/css/main.css">
 <div class="screen">
-    <a href='/index.do'> <img src="../img/member/pizza.png"
+    <a href='/index.do'> <img src="../../img/member/pizza.png"
                               style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
     <ul class="menu" style="display: inline-table;">
         <c:if test="${sessionScope.member == null}">

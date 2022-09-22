@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>메인</title>
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 </head>
 <body>
 
@@ -20,66 +20,66 @@
             <div class="ott">
                 <%--				넷플릭스 - value = 1--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="img/member/netflix.png" style="margin: 50px" value="1"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/netflix.png" style="margin: 50px" value="1"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="img/member/netflix.png" style="margin: 50px" value="1"></a>
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/netflix.png" style="margin: 50px" value="1"></a>
                 </c:if>
 
                 <%--				왓챠 - value = 2--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="/img/member/wacha.png" style="margin: 50px" value="2"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/wacha.png" style="margin: 50px" value="2"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="/img/member/wacha.png" style="margin: 50px"
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/wacha.png" style="margin: 50px"
                                                            value="2"></a>
                 </c:if>
 
                 <%--				유튜브 - value = 3--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="img/member/youtube.png" style="margin: 50px" value="3"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/youtube.png" style="margin: 50px" value="3"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="img/member/youtube.png" style="margin: 50px" value="3"></a>
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/youtube.png" style="margin: 50px" value="3"></a>
                 </c:if>
                 <br>
 
                 <%--				티빙 = value = 4--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="img/member/tiving.png" style="margin: 50px" value="4"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/tiving.png" style="margin: 50px" value="4"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="img/member/tiving.png" style="margin: 50px"
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/tiving.png" style="margin: 50px"
                                                            value="4"></a>
                 </c:if>
 
                 <%--				웨이브 = value = 5--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="img/member/wave.png" style="margin: 50px" value="5"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/wave.png" style="margin: 50px" value="5"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="img/member/wave.png" style="margin: 50px" value="5"></a>
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/wave.png" style="margin: 50px" value="5"></a>
                 </c:if>
 
                 <%--				디즈니 - value = 6--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="img/member/disney+.png" style="margin: 50px" value="6"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/disney+.png" style="margin: 50px" value="6"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="img/member/disney+.png" style="margin: 50px"
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/disney+.png" style="margin: 50px"
                                                            value="6"></a>
                 </c:if>
 
                 <%--				아마존 - value = 7--%>
                 <c:if test="${sessionScope.member == null}">
-                    <a href="/member/login.do"><img src="img/member/amazon.jpeg" style="margin: 50px" value="7"></a>
+                    <a href="/member/login.do"><img src="${pageContext.request.contextPath}/img/member/amazon.jpeg" style="margin: 50px" value="7"></a>
                 </c:if>
                 <c:if test="${sessionScope.member != null}">
-                    <a href="/main/select-service.do"><img src="img/member/amazon.jpeg" style="margin: 50px"
+                    <a href="/main/select-service.do"><img src="${pageContext.request.contextPath}/img/member/amazon.jpeg" style="margin: 50px"
                                                            value="7"></a>
                 </c:if>
             </div>
-            <img src="img/member/notice1.png">
+            <img src="${pageContext.request.contextPath}/img/member/notice1.png">
         </div>
         <div id="board-search" style="margin-bottom: 50px;">
             <div class="container">
