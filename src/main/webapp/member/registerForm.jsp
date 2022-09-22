@@ -1,16 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="dao.MemberDaoImpl"%>
-<%@ page import="java.lang.reflect.Member" %>
-<%@ page import="dao.MemberDao" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인 폼</title>
-<script type="text/javascript" src="../js/member.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.js"></script>
+<script type="text/javascript" src="../resources/js/member.js"></script>
 <style>
 .screen {
 	width: 1280px;
@@ -152,12 +150,12 @@ body {
 					<form class="register-form" action="register.do" method="post" name="frm">
 						<p style="margin-top: -15px">회원가입</p>
 						<input type="text" id="id" name="id" placeholder="아이디" required/>
-						<button type="submit" id="reId" name="reId" value="중복확인" style="margin-bottom: 15px" onclick="" >중복확인</button>
+						<button type="button" id="duplicateCheck" name="duplicateCheck" value="중복확인" style="margin-bottom: 15px" >중복확인</button>
 						<input type="text" name="nickname" placeholder="닉네임" required >
 						<input type="password" id="pwd" name="pwd" placeholder="비밀번호" onchange="check_pw()" required>
 						<input type="password" id="pwd_check" name="pwd_check" placeholder="비밀번호 확인" onchange="check_pw()" required>
 						<input type="number" name="phone" placeholder="휴대폰번호">
-						<button type="submit" onclick="return check_pw()">회원가입</button>
+						<button type="submit" onclick="return accept_login()">회원가입</button>
 
 						<p class="message">
 							즐거운 공유공간 '피자'
@@ -167,6 +165,17 @@ body {
 			</div>
 		</div>
 	</section>
+	<script>
+		function accept_login(){
+			if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
+				return true;
+			} else{
+				alert("비밀번호를 다시 확인해주세요.")
+				document.getElementById('pwd_check').focus();
+				return false;
+			}
+		}
+	</script>
 
 	<script>
 		function check_pw(){
@@ -174,16 +183,62 @@ body {
 			if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
 				document.getElementById('pwd').style.color = 'green';
 				document.getElementById('pwd_check').style.color = 'green';
-				return true;
 			} else{
 				document.getElementById('pwd').style.color = 'green';
 				document.getElementById('pwd_check').style.color = 'red';
-				alert("비밀번호")
-				return false;
 			}
 
 		}
 	</script>
+	<script>
+			$("#duplicateCheck").on("click", function(e) {
+				const id = $("#id").val();
+				const query = {id: id};
+				$.ajax({
+					type : "POST",
+					url: "/member/duplicateCheck.do",
+					data : query,
+					success:function (data){
+						// 1(존재하는아이디) -1(사용할수있는아이디)
+						if(data == 1){
+							alert("이미 존재하는 아이디입니다.");
+							return false;
+						} else{
+							alert("사용 가능한 아이디입니다.");
+							return true;
+						}
+
+					},
+					error : function (XMLHttpReuqest, textStatus, errorThrown){
+						alert("통신 실패")
+					}
+				})
+			});
+<%--		${"#duplicateCheck"}.on("click", function(e) {--%>
+<%--			const id = $("#id").val();--%>
+<%--			const query = {id: id};--%>
+<%--			$.ajax({--%>
+<%--				type : "POST",--%>
+<%--				url: "/member/duplicateCheck.do",--%>
+<%--				data : query,--%>
+<%--				success:function (data){--%>
+<%--					// 1(존재하는아이디) -1(사용할수있는아이디)--%>
+<%--					if(data == 1){--%>
+<%--						alert("이미 존재하는 아이디입니다.");--%>
+<%--						return false;--%>
+<%--					} else{--%>
+<%--						alert("사용 가능한 아이디입니다.");--%>
+<%--						return true;--%>
+<%--					}--%>
+
+<%--				},--%>
+<%--				error : function (XMLHttpReuqest, textStatus, errorThrown){--%>
+<%--					alert("통신 실패")--%>
+<%--				}--%>
+<%--			})--%>
+<%--		});--%>
+	</script>
+
 
 
 </body>
