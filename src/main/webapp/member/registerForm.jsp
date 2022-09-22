@@ -127,9 +127,20 @@ body {
 </style>
 </head>
 <body>
-<header style="height: 150px">
-	<%@ include file="/common/header.jsp"%>
-</header>
+	<header style="height: 150px">
+		<div class="screen">
+			<a href="home.do"> <img src="pizza.png"
+				style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
+			<ul class="menu" style="display: inline-table;">
+				<li id="로그인" onclick="location.href='login.do'"><a href="#">로그인</a></li>
+				<li id="나의피자"><a href="#">나의 피자</a></li>
+				<li id="꿀잼추천"><a href="#">꿀잼 추천</a></li>
+				<li id="그룹찾기"><a href="#">그룹 찾기</a></li>
+				<li id="그룹모집"><a href="../board/list.do">그룹 모집</a></li>
+			</ul>
+		</div>
+		<hr>
+	</header>
 
 	<section>
 
@@ -139,11 +150,11 @@ body {
 				<div class="form">
 					<form class="register-form" action="register.do" method="post" name="frm" onclick="joinCheck()">
 						<p style="margin-top: -15px">회원가입</p>
-						<input type="text" name="id" placeholder="아이디" />
-						<button type="submit" name="reId" value="중복확인" style="margin-bottom: 15px" onclick="" >중복확인</button>
+						<input type="text" id="id" name="id" placeholder="아이디" />
+						<button type="submit" id="reId" name="reId" value="중복확인" style="margin-bottom: 15px" onclick="" >중복확인</button>
 						<input type="text" name="nickname" placeholder="닉네임">
-						<input type="password" name="pwd" placeholder="비밀번호" />
-						<input type="password" name="pwd_check" placeholder="비밀번호 확인">
+						<input type="password" id="pwd" name="pwd" placeholder="비밀번호" onchange="check_pw()"/>
+						<input type="password" id="pwd_check" name="pwd_check" placeholder="비밀번호 확인" onchange="check_pw()">
 						<input type="number" name="phone" placeholder="휴대폰번호">
 						<button>회원가입</button>
 						<p class="message">
@@ -154,8 +165,6 @@ body {
 			</div>
 		</div>
 	</section>
-
-<script> src = "js/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>

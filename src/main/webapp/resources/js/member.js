@@ -1,4 +1,11 @@
- // 정규표현식을 사용해서 아이디에 대한 유효성 검사를 할 수 있음.
+function idCheck() {
+    if(document.frm.id.value == "") {
+        alert("아이디를 입력하여 주십시요.");
+        document.frm.id.focus();	// 포커스를 아이디 입력 태그로 이동
+        return;
+    }
+
+// 정규표현식을 사용해서 아이디에 대한 유효성 검사를 할 수 있음.
     // 아이디 중복체크를 수행하는 새로운 팝업창을 띄웠다.
     // 현재 경로가 '/'(현재 url은 /join.do)이므로, url="idCheck.do" 을 사용 가능
     // var url = "idCheck.do?userid=" + document.frm.memberId.value;
@@ -17,11 +24,6 @@ function idok(id) {
 }
 
 function joinCheck() {
-    if (document.frm.name.value.length == 0) {
-        alert("이름을 써주세요.");
-        frm.name.focus();
-        return false;
-    }
     if (document.frm.id.value.length == 0) {
         alert("아이디를 써주세요");
         frm.memberId.focus();
@@ -40,9 +42,16 @@ function joinCheck() {
     }
     if (document.frm.reId.value.length == 0) {
         alert("중복 체크를 하지 않았습니다.");
-        frm.memberId.focus();
+        frm.reId.focus();
         return false;
     }
+
+    if (document.frm.nickname.value.length == 0){
+        alert("닉네임을 써주세요");
+        frm.nickname.focus()
+        return false;
+    }
+}
     return true;
     /* 고려해야 할 사항
     브라우저에서 서버로 전송하는 데이터로 지금은 pwd과 pwd_check를 전송하고 있음
@@ -78,4 +87,17 @@ function setMessage(msg, elements){
     if(elements){
         elements.select();
     }
+}
+
+function  check_pw(){
+    var pwd = document.getElementById('pwd').value;
+
+    if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
+        document.getElementById('pwd').style.color = 'green';
+        document.getElementById('pwd_check').style.color = 'green';
+    } else{
+        document.getElementById('pwd').style.color = 'green';
+        document.getElementById('pwd_check').style.color = 'red';;
+    }
+
 }
