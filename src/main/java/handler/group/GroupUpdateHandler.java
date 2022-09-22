@@ -51,7 +51,7 @@ public class GroupUpdateHandler implements CommandHandler {
         GroupDto resultGroup = groupDao.updateGroup(sessionGroup, updatedGroup);
         request.setAttribute("group", resultGroup);
         session.setAttribute("group", resultGroup);
-        return "/group/detail.do?groupName=" + resultGroup.getGroupName();
+        return "/group/group-detail.jsp";
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {

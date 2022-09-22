@@ -52,7 +52,7 @@ public class ArticlePostHandler implements CommandHandler {
         articleDao.save(article);
         request.setAttribute("article", article);
         session.setAttribute("article", article);
-        return "/article/detail?title=" + article.getTitle();
+        return "/article/article-detail.jsp";
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {

@@ -49,7 +49,7 @@ public class GroupRecruitHandler implements CommandHandler {
         groupDao.joinGroup((MemberDto) member, group);
         request.setAttribute("group", group);
         session.setAttribute("group", group);
-        return "/group/detail.do?groupName=" + groupName;
+        return "/group/group-detail.jsp";
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {

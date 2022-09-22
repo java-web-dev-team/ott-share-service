@@ -108,7 +108,7 @@ section.notice {
 					</div>
 				</div>
 				<div id="wrap" align="center">
-					<form name="form" method="post" action="/article/update.do">
+					<form name="form" method="post" action="update.do">
 						<table class="table">
 							<th>OTT
 							<td>
