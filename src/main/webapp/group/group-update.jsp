@@ -142,7 +142,7 @@ section.notice {
 						</table>
 						<br>
 						<button type="submit">수정</button>
-						<button><a href="list.do">취소</a></button>
+						<button><a href="/article/list.do">취소</a></button>
 					</form>
 				</div>
 			</section>

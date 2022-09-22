@@ -32,10 +32,8 @@ public class ArticleUpdateHandler implements CommandHandler {
     }
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
-        String url = "/article/article-detail.jsp";
         HttpSession session = request.getSession();
         ArticleDto sessionArticle = (ArticleDto) session.getAttribute("article");
-        MemberDto member = (MemberDto) session.getAttribute("member");
 
         ArticleDto updatedArticle = new ArticleDto(
                 request.getParameter("title") != null ?
@@ -53,7 +51,7 @@ public class ArticleUpdateHandler implements CommandHandler {
         ArticleDto resultArticle = articleDao.updateArticle(sessionArticle, updatedArticle);
         request.setAttribute("article", resultArticle);
         session.setAttribute("article", resultArticle);
-        return url;
+        return "/article/article-detail.jsp";
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {

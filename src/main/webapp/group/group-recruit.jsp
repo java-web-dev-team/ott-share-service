@@ -106,7 +106,7 @@ section.notice {
 					</div>
 				</div>
 				<div id="wrap" align="center">
-					<form name="form" method="post" action="recruit.do">
+					<form name="form" method="post" action="/group/recruit.do">
 						<table class="table">
 							<th>OTT
 							<td>
@@ -136,7 +136,7 @@ section.notice {
 						</table>
 						<br>
 						<button type="submit">등록</button>
-						<button><a href="list.do">취소</a></button>
+						<button><a href="/group/list.do">취소</a></button>
 					</form>
 				</div>
 			</section>

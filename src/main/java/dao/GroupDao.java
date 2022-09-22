@@ -53,9 +53,6 @@ public class GroupDao {
                 insertPs.setInt(8, 0);
                 insertPs.executeUpdate();
             }
-//            else {
-//                throw new SQLException();
-//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
