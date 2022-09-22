@@ -39,7 +39,6 @@ public class MemberRegisterHandler implements CommandHandler {
 
         String id = request.getParameter("id");
         String password = request.getParameter("pwd");
-        String passwordRe = request.getParameter("pwd_check");
         String nickname = request.getParameter("nickname");
         String phone = request.getParameter("phone");
 
@@ -51,7 +50,7 @@ public class MemberRegisterHandler implements CommandHandler {
         memberDto.setPhone(phone);
 
 
-        if(memberDao.confirmID(id) == -1 && password == passwordRe) {
+        if(memberDao.confirmID(id) == -1) {
 
             memberDao.insertMember(memberDto);
             HttpSession session = request.getSession();

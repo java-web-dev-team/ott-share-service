@@ -166,5 +166,20 @@ body {
 		</div>
 	</section>
 
+	<script>
+		function  check_pw(){
+
+			if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
+				document.getElementById('pwd').style.color = 'green';
+				document.getElementById('pwd_check').style.color = 'green';
+			} else{
+				document.getElementById('pwd').style.color = 'green';
+				document.getElementById('pwd_check').style.color = 'red';;
+			}
+
+		}
+	</script>
+
+
 </body>
 </html>
