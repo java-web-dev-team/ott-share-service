@@ -29,7 +29,7 @@ public class MemberDaoImplTest {
 
     @Test
     public void getMember() throws Exception {
-        System.out.println("memberDao.getMember(\"dglentond\") = " + memberDao.getMember("dglentond"));
+        System.out.println("memberDao.getMember(\"dglentond\") = " + memberDao.getMember("asdf"));
     }
 
     @Test
@@ -51,6 +51,11 @@ public class MemberDaoImplTest {
     public void deleteMember() throws Exception {
         memberDao.deleteMember("asdf");
         assertTrue(memberDao.count() == 14);
+    }
+
+    @Test
+    public void findNickName(){
+        System.out.println("memberDao.findNickName(\"asdf\") = " + memberDao.findNickName("asdf"));
     }
 
 

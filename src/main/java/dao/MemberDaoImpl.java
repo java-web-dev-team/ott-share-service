@@ -132,6 +132,27 @@ public class MemberDaoImpl implements MemberDao{
         return AllMemberlist;
     }
 
+    @Override
+    public String findNickName(String id){
+        String sql = "SELECT nickname from member where member_id = ?";
+        ResultSet rs;
+
+        try {
+            Connection conn = DBManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("nickname");
+                return name;
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     // 가입 메서드
     @Override

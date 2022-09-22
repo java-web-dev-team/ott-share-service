@@ -25,4 +25,6 @@ public interface MemberDao {
 
     List<MemberDto> selectAllMember() throws Exception;
 
+    String findNickName(String id);
+
 }
