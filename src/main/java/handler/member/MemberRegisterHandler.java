@@ -29,7 +29,7 @@ public class MemberRegisterHandler implements CommandHandler {
     }
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String url = "/member/login.jsp";
+        String url = "/member/loginForm.jsp";
         try{
             request.setCharacterEncoding("UTF-8");
         } catch(Exception e){
@@ -51,19 +51,15 @@ public class MemberRegisterHandler implements CommandHandler {
         memberDto.setPhone(phone);
 
 
-        if(memberDao.confirmID(id) == -1 && password == passwordRe){
-            memberDao.insertMember(memberDto);
+        if(memberDao.confirmID(id) == -1 && password == passwordRe) {
 
+            memberDao.insertMember(memberDto);
             HttpSession session = request.getSession();
             session.setAttribute("member", memberDto);
-            return url;
-        } else if(memberDao.confirmID(id) == -1 && password != passwordRe){
-            return "/member/registerForm.jsp";
-        } else if (memberDao.confirmID(id) == 1) {
-            request.setAttribute("msg", "존재하는 아이디입니다. ");
-            return "/member/registerForm.jsp";
+            return "/member/loginForm.jsp";
         }
-        return url;
+
+        return "/member/registerForm.jsp";
     }
 
 

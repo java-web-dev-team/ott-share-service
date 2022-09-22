@@ -58,6 +58,7 @@ public class MemberDaoImpl implements MemberDao{
     // 아이디 중복 확인 메서드
     @Override
     public int confirmID(String id) {
+        // -1 = 중복 x, 1 -> 중복 o
         int result = -1;
         String sql = "SELECT member_id FROM member WHERE member_id = ?";
         ResultSet rs = null;

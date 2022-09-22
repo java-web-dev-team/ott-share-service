@@ -83,15 +83,3 @@ function setMessage(msg, elements){
 function check_id(){
     document.getElementById("id").value ;
 }
-
-function  check_pw(){
-
-    if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
-        document.getElementById('pwd').style.color = 'green';
-        document.getElementById('pwd_check').style.color = 'green';
-    } else{
-        document.getElementById('pwd').style.color = 'green';
-        document.getElementById('pwd_check').style.color = 'red';;
-    }
-
-}
