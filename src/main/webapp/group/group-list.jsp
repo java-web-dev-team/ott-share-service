@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 리스트</title>
+<title>그룹 리스트</title>
 <style>
 .screen {
 	width: 1280px;
