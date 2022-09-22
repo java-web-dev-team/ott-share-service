@@ -33,7 +33,6 @@ public class GroupDetailHandler implements CommandHandler {
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
-        Object member = session.getAttribute("member");
         GroupDto group = (GroupDto) session.getAttribute("group");
         groupDao.joinGroup((MemberDto) session.getAttribute("member"), group);
 
@@ -43,7 +42,6 @@ public class GroupDetailHandler implements CommandHandler {
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String url = "/group/group-detail.jsp";
         HttpSession session = request.getSession();
 
         String groupName = request.getParameter("groupName");
@@ -53,7 +51,7 @@ public class GroupDetailHandler implements CommandHandler {
 
         List<String> nicknames = groupDao.selectNicknamesByGroupName(groupName);
         request.setAttribute("nicknames", nicknames);
-        return url;
+        return "/group/group-detail.jsp";
     }
 
 
