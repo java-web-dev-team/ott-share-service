@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +31,8 @@
 						<input type="password" id="pwd" name="pwd" placeholder="비밀번호" onchange="check_pw()" required>
 						<input type="password" id="pwd_check" name="pwd_check" placeholder="비밀번호 확인" onchange="check_pw()" required>
 						<input type="number" name="phone" placeholder="휴대폰번호">
-						<button>회원가입</button>
+						<button type="submit" onclick="return check_pw()">회원가입</button>
+
 						<p class="message">
 							즐거운 공유공간 '피자'
 						</p>
@@ -41,14 +43,17 @@
 	</section>
 
 	<script>
-		function  check_pw(){
+		function check_pw(){
 
 			if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
 				document.getElementById('pwd').style.color = 'green';
 				document.getElementById('pwd_check').style.color = 'green';
+				return true;
 			} else{
 				document.getElementById('pwd').style.color = 'green';
-				document.getElementById('pwd_check').style.color = 'red';;
+				document.getElementById('pwd_check').style.color = 'red';
+				alert("비밀번호")
+				return false;
 			}
 
 		}
