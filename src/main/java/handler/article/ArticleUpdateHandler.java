@@ -1,8 +1,11 @@
-package handler.group;
+package handler.article;
 
 import common.command.CommandHandler;
+import dao.ArticleDao;
 import dao.GroupDao;
+import dto.ArticleDto;
 import dto.GroupDto;
+import dto.MemberDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class GroupUpdateHandler implements CommandHandler {
-    GroupDao groupDao = GroupDao.getInstance();
+public class ArticleUpdateHandler implements CommandHandler {
+    ArticleDao articleDao = ArticleDao.getInstance();
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response)
@@ -29,32 +32,31 @@ public class GroupUpdateHandler implements CommandHandler {
     }
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+        String url = "/article/article-detail.jsp";
         HttpSession session = request.getSession();
+        ArticleDto sessionArticle = (ArticleDto) session.getAttribute("article");
+        MemberDto member = (MemberDto) session.getAttribute("member");
 
-        GroupDto sessionGroup = (GroupDto) session.getAttribute("group");
-
-        GroupDto updatedGroup = new GroupDto(
-                request.getParameter("ottId") != null ?
-                        Integer.parseInt(request.getParameter("ottId")) :
-                        sessionGroup.getOttId(),
-                request.getParameter("groupName") != null ?
-                        request.getParameter("groupName") :
-                        sessionGroup.getGroupName(),
+        ArticleDto updatedArticle = new ArticleDto(
+                request.getParameter("title") != null ?
+                        request.getParameter("title") :
+                        sessionArticle.getTitle(),
                 request.getParameter("content") != null ?
                         request.getParameter("content") :
-                        sessionGroup.getContent(),
-                request.getParameter("period") != null ?
-                        Integer.parseInt(request.getParameter("period")) :
-                        sessionGroup.getPeriod()
+                        sessionArticle.getContent(),
+                request.getParameter("ottId") != null ?
+                Integer.parseInt(request.getParameter("ottId")) :
+                sessionArticle.getOttId(),
+                        sessionArticle.getCreatedBy()
         );
 
-        GroupDto resultGroup = groupDao.updateGroup(sessionGroup, updatedGroup);
-        request.setAttribute("group", resultGroup);
-        session.setAttribute("group", resultGroup);
-        return "/group/detail.do?groupName=" + resultGroup.getGroupName();
+        ArticleDto resultArticle = articleDao.updateArticle(sessionArticle, updatedArticle);
+        request.setAttribute("article", resultArticle);
+        session.setAttribute("article", resultArticle);
+        return url;
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {
-        return "/group/group-update.jsp";
+        return "/article/article-update.jsp";
     }
 }

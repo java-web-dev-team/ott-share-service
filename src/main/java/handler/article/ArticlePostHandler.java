@@ -1,8 +1,10 @@
-package handler.group;
+package handler.article;
 
 import common.command.CommandHandler;
-import dao.GroupDao;
-import dto.GroupDto;
+import dao.ArticleDao;
+import dao.MemberDao;
+import dao.MemberDaoImpl;
+import dto.ArticleDto;
 import dto.MemberDto;
 
 import javax.servlet.ServletException;
@@ -10,11 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDate;
 
-public class GroupRecruitHandler implements CommandHandler {
+public class ArticlePostHandler implements CommandHandler {
 
-    GroupDao groupDao = GroupDao.getInstance();
+
+    ArticleDao articleDao = ArticleDao.getInstance();
+    MemberDao memberDao = new MemberDaoImpl();
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response)
@@ -33,27 +36,26 @@ public class GroupRecruitHandler implements CommandHandler {
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        MemberDto member = (MemberDto) session.getAttribute("member");
 
         String ottId = request.getParameter("ottId");
-        String groupName = request.getParameter("groupName");
+        String title = request.getParameter("title");
         String content = request.getParameter("content");
-        String period = request.getParameter("period");
-        GroupDto group = new GroupDto(
-                Integer.parseInt(ottId),
-                groupName,
+
+
+        ArticleDto article = new ArticleDto(
+                title,
                 content,
-                Integer.parseInt(period)
+                Integer.parseInt(ottId),
+                member.getMemberId()
         );
-        groupDao.insertGroup(group);
-        Object member = session.getAttribute("member");
-        groupDao.joinGroup((MemberDto) member, group);
-        request.setAttribute("group", group);
-        session.setAttribute("group", group);
-        return "/group/detail.do?groupName=" + groupName;
+        articleDao.save(article);
+        request.setAttribute("article", article);
+        session.setAttribute("article", article);
+        return "/article/detail?title=" + article.getTitle();
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {
-        return "/group/group-recruit.jsp";
+        return "/article/article-post.jsp";
     }
-
 }

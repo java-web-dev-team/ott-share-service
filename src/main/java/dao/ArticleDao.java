@@ -25,18 +25,17 @@ public class ArticleDao {
     }
 
     public ArticleDto save(ArticleDto articleDto) {
-        String saveSql = "insert into 'article' values (?, ?, ?, ?, ?, ?)";
+        String saveSql = "insert into article (ott_id, title, content, member_id, created_date) values (?, ?, ?, ?, ?)";
         String selectSql = "select * from article where title = ?";
         Connection conn = getConnection();
         try {
             assert conn != null;
             PreparedStatement savePs = conn.prepareStatement(saveSql);
-            savePs.setInt(1, articleDto.getId());
-            savePs.setInt(2, articleDto.getOttId());
-            savePs.setString(3, articleDto.getTitle());
-            savePs.setString(4, articleDto.getContent());
-            savePs.setString(5, articleDto.getCreatedBy());
-            savePs.setString(6, articleDto.getCreatedDate());
+            savePs.setInt(1, articleDto.getOttId());
+            savePs.setString(2, articleDto.getTitle());
+            savePs.setString(3, articleDto.getContent());
+            savePs.setString(4, articleDto.getCreatedBy());
+            savePs.setString(5, articleDto.getCreatedDate());
             savePs.executeUpdate();
 
             PreparedStatement selectPs = conn.prepareStatement(selectSql);
@@ -135,6 +134,41 @@ public class ArticleDao {
             }
 
             return findByMemberId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteArticle(String title) {
+
+        String deleteSql = "delete from article where title = ?";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement deletePs = conn.prepareStatement(deleteSql);
+            deletePs.setString(1, title);
+            deletePs.executeUpdate();
+            } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArticleDto findByTitle(String title) {
+        String findSql = "select * from article where title = ?";
+        Connection conn = getConnection();
+        try {
+            assert conn != null;
+            PreparedStatement findPs = conn.prepareStatement(findSql);
+            findPs.setString(1, title);
+
+            ResultSet resultSet = findPs.executeQuery();
+            resultSet.next();
+            return new ArticleDto(
+                    resultSet.getString("title"),
+                    resultSet.getString("content"),
+                    resultSet.getInt("ott_id"),
+                    resultSet.getString("member_id")
+            );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
