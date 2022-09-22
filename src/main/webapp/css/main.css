@@ -57,8 +57,8 @@
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+	height: 400px;
+	border-radius: 20px;
 }
 
 section.notice {
@@ -244,11 +244,16 @@ section.notice {
 }
 
 .table {
-	font-size: 15px;
+	font-size: 18px;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	padding: 15px;
 	width: 100%;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+table td, th{
+	border: #d3d3d3 solid 1px;
 }
 
 .ott :hover {
