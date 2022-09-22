@@ -14,19 +14,10 @@ function idCheck() {
     // 별도로 윈도우 팝업창을 띄우지 않음
 
 
-function idok(id) {
-    // opener: registerForm.jsp, document: idCheck.jsp
-    // 아이디 중복체크한 값으로 id를 반영
-    opener.frm.id.value = document.frm.member_id.value;
-    // 중복확인이 성공되었다는 것을 표시
-    opener.frm.id.value = document.frm.memberId.value;
-    self.close();	// 팝업창을 닫는다.
-}
-
 function joinCheck() {
-    if (document.frm.id.value.length == 0) {
-        alert("아이디를 써주세요");
-        frm.memberId.focus();
+    if (document.getElementById("id").length == 0) {
+        alert("아이디를 입력해주세요.");
+        frm.id.focus();
         return false;
     }
 
@@ -89,8 +80,11 @@ function setMessage(msg, elements){
     }
 }
 
+function check_id(){
+    document.getElementById("id").value ;
+}
+
 function  check_pw(){
-    var pwd = document.getElementById('pwd').value;
 
     if(document.getElementById('pwd').value == document.getElementById('pwd_check').value){
         document.getElementById('pwd').style.color = 'green';
