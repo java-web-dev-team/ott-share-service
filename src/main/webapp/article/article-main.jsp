@@ -20,6 +20,7 @@
 	<%@ include file="/common/header.jsp"%>
 </header>
 
+<a href="/article/list.do">추천글 목록</a>
 
 	<div class="screen">
 		<div class="row"
