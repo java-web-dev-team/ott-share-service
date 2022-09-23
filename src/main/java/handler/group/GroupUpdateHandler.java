@@ -28,7 +28,7 @@ public class GroupUpdateHandler implements CommandHandler {
         }
     }
 
-    private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+    private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
         GroupDto sessionGroup = (GroupDto) session.getAttribute("group");
@@ -51,7 +51,8 @@ public class GroupUpdateHandler implements CommandHandler {
         GroupDto resultGroup = groupDao.updateGroup(sessionGroup, updatedGroup);
         request.setAttribute("group", resultGroup);
         session.setAttribute("group", resultGroup);
-        return "/group/group-detail.jsp";
+        response.sendRedirect("/group/detail.do?groupName=" + resultGroup.getGroupName());
+        return null;
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {

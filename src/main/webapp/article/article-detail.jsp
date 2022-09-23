@@ -67,16 +67,17 @@
 					<td colspan="3"><pre>${article.content}</pre></td>
 				</tr>
 			</table>
-			<c:forEach var="nickname" items="${nicknames}">
+				<c:forEach var="nickname" items="${nicknames}">
 				<c:if test="${sessionScope.member.nickname == nickname}">
-					<form action="/article/update.do" method="get">
-						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 수정
-						</button>
-						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 삭제
-						</button>
-					</form>
+				<form action="/article/update.do" method="get">
+					<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 수정
+					</button>
+					<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 삭제
+					</button>
+				</form>
 				</c:if>
-			</c:forEach>
+				</c:forEach>
+
 		</section>
 	</div>
 </div>
