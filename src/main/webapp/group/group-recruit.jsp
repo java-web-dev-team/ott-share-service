@@ -25,6 +25,7 @@
 				</div>
 				<div id="wrap" align="center">
 					<form name="form" method="post" action="/group/recruit.do">
+						<form method="get" action="/group/detail.do">
 						<table class="table">
 							<th>OTT</th>
 							<td><select style="width: 100%; border: 0;" name="ottId">
@@ -52,6 +53,7 @@
 							</tr>
 						</table>
 						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 등록</button>
+						</form>
 					</form>
 					<a href="javascript:window.history.back();"><button style="border-radius: 20px; background: white; margin-top: 20px;">취소</button></a>
 				</div>

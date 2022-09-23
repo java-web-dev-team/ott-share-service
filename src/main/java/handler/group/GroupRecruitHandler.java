@@ -31,7 +31,7 @@ public class GroupRecruitHandler implements CommandHandler {
         }
     }
 
-    private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+    private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
         String ottId = request.getParameter("ottId");
@@ -49,7 +49,8 @@ public class GroupRecruitHandler implements CommandHandler {
         groupDao.joinGroup((MemberDto) member, group);
         request.setAttribute("group", group);
         session.setAttribute("group", group);
-        return "/group/group-detail.jsp";
+        response.sendRedirect("/group/detail.do?groupName=" + groupName);
+        return null;
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {

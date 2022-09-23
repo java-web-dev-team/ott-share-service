@@ -75,7 +75,9 @@
                         <form action="detail.do" method="post">
 <%--							그룹 참여자 4명 미만이고 현재 로그인한 회원이 참여하지 않은 경우 참여버튼 활성화--%>
                             <c:if test="${group.memberCount < 4 && !fn:contains(nicknames, sessionScope.member.nickname)}">
-                                <button type="submit" style="border-radius: 20px; background: white; width: 70px; height:30px;">참여</button>
+                                <form action="/group/join.do" method="post">
+                                    <button type="submit" style="border-radius: 20px; background: white; width: 70px; height:30px;">참여</button>
+                                </form>
                             </c:if>
 
 <%--							그룹 참여자 4명 이상일 경우 모집마감--%>
