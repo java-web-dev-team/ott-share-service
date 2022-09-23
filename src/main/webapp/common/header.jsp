@@ -27,7 +27,7 @@
             <li id="나의피자"><a href="/member/mypage.do">나의 피자</a></li>
         </c:if>
 
-        <li id="꿀잼추천"><a href="/article/list.do">꿀잼 추천</a></li>
+        <li id="꿀잼추천"><a href="/article/article-main.jsp">꿀잼 추천</a></li>
         <li id="그룹찾기"><a href="/group/list.do">그룹 찾기</a></li>
 
         <c:if test="${sessionScope.member == null}">
