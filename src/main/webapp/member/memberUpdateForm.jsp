@@ -26,7 +26,7 @@
 </header>
 
 <div class="screen">
-    <div class="card">
+    <div class="card" style="width: 400px;">
 
         <div class="card-header">
 

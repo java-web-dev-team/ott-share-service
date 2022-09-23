@@ -48,14 +48,11 @@ public class MemberRegisterHandler implements CommandHandler {
         memberDto.setNickname(nickname);
         memberDto.setPhone(phone);
 
-        if((memberDao.confirmID(id) == -1) && (memberDao.confirmNickname(nickname) == -1)) {
+        memberDao.insertMember(memberDto);
+        HttpSession session = request.getSession();
+        session.setAttribute("member", memberDto);
+        return "/member/loginForm.jsp";
 
-            memberDao.insertMember(memberDto);
-            HttpSession session = request.getSession();
-            session.setAttribute("member", memberDto);
-            return "/member/loginForm.jsp";
-        }
-        return "/member/registerForm.jsp";
     }
 
 
