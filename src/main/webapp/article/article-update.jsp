@@ -43,7 +43,7 @@
 							</td>
 
 							<tr>
-								<th>그룹명</th>
+								<th>제목</th>
 								<td>
 									<input type="text" size="68" name="title" value="${sessionScope.article.title}">
 								</td>

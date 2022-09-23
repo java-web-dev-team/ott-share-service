@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 상세</title>
+<title>게시글 상세 페이지</title>
 	<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -15,14 +15,16 @@
 	<%@ include file="/common/header.jsp"%>
 </header>
 
+<div class="screen">
 	<div id="section">
-		<section class="notice">
+		<section class="notice" style="padding-top: 40px;">
 			<div class="page-title">
 				<div class="container">
 					<h3>게시글 상세보기</h3>
 				</div>
 			</div>
 
+			<div id="wrap" align="center">
 			<table class="table">
 				<tr>
 					<th>OTT</th>
@@ -47,9 +49,11 @@
 					<c:if test="${article.ottId == 7}">
 						<td>아마존플러스</td>
 					</c:if>
-					<th>제목</th>
-					<td>${article.title}</td>
 				</tr>
+			<tr>
+				<th>제목</th>
+				<td>${article.title}</td>
+			</tr>
 				<tr>
 					<th>작성일</th>
 					<td>${article.createdDate}</td>
@@ -63,9 +67,19 @@
 					<td colspan="3"><pre>${article.content}</pre></td>
 				</tr>
 			</table>
-
-			<form action="${pageContext.request.contextPath}/article/update.do" method="get"><button type="submit">수정</button> </form>
+			<c:forEach var="nickname" items="${nicknames}">
+				<c:if test="${sessionScope.member.nickname == nickname}">
+					<form action="/article/update.do" method="get">
+						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 수정
+						</button>
+						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 삭제
+						</button>
+					</form>
+				</c:if>
+			</c:forEach>
 		</section>
 	</div>
+</div>
 </body>
 </html>
+
