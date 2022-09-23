@@ -10,9 +10,9 @@ public class DBManager {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String jdbcUrl = "jdbc:mysql://database-1.c2eprqlwdarg.us-west-2.rds.amazonaws.com:3306/pizzadb";
+            String jdbcUrl = "rds.crcp79odgpcq.ap-northeast-2.rds.amazonaws.com/pizzadb";
             String user = "admin";
-            String password = "pizzamysqldb1!";
+            String password = "pizzadbmysql1!";
             return DriverManager.getConnection(jdbcUrl, user, password);
         } catch(Exception e) {
             e.printStackTrace();
