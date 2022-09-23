@@ -70,8 +70,29 @@ public class MemberDaoImpl implements MemberDao{
 
             if(rs.next()){
                 result = 1;
-            } else {
-                result = -1;
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            DBManager.close(rs);
+        }
+        return result;
+    }
+
+    @Override
+    public int confirmNickname(String nickname) {
+        // -1 = 중복 x, 1 -> 중복 o
+        int result = -1;
+        String sql = "SELECT nickname FROM member WHERE nickname = ?";
+        ResultSet rs = null;
+        try{
+            Connection conn = DBManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, nickname);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                result = 1;
             }
         } catch(Exception e){
             e.printStackTrace();
@@ -158,7 +179,6 @@ public class MemberDaoImpl implements MemberDao{
     // 가입 메서드
     @Override
     public int insertMember(MemberDto member) throws Exception {
-        int rowCnt = 0;
         // id, member_id, password, nickname, phone
         String sql = "INSERT IGNORE INTO member VALUES (?, ?, ?, ?, ?)";
         try (

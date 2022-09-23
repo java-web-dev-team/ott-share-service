@@ -34,6 +34,7 @@ public class MemberDaoImplTest {
 
     @Test
     public void insertMember() throws Exception {
+        memberDao.deleteAll();
         MemberDto m = new MemberDto("asdf", "1234", "user", "010-0000-0000");
         memberDao.insertMember(m);
         assertTrue(memberDao.count() == 1);

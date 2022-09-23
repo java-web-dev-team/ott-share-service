@@ -29,7 +29,6 @@ public class MemberRegisterHandler implements CommandHandler {
     }
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String url = "/member/loginForm.jsp";
         try{
             request.setCharacterEncoding("UTF-8");
         } catch(Exception e){
@@ -49,15 +48,13 @@ public class MemberRegisterHandler implements CommandHandler {
         memberDto.setNickname(nickname);
         memberDto.setPhone(phone);
 
-
-        if(memberDao.confirmID(id) == -1) {
+        if((memberDao.confirmID(id) == -1) && (memberDao.confirmNickname(nickname) == -1)) {
 
             memberDao.insertMember(memberDto);
             HttpSession session = request.getSession();
             session.setAttribute("member", memberDto);
             return "/member/loginForm.jsp";
         }
-
         return "/member/registerForm.jsp";
     }
 

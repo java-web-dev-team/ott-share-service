@@ -27,4 +27,6 @@ public interface MemberDao {
 
     String findNickName(String id);
 
+    int confirmNickname(String nickname);
+
 }
