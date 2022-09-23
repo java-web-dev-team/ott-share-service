@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 리스트</title>
-	<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/list.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 				<div class="page-title">
 					<div class="container">
 						<h3>꿀잼 목록</h3>
-						<a href="/article/post.do"><img src="button.png" style="float: right;"></a>
+						<a href="/article/post.do"><img src="${pageContext.request.contextPath}/img/group/등록.png" style="float: right;"></a>
 					</div>
 				</div>
 
@@ -79,7 +79,7 @@
 						<div class="search-window">
 							<form action="">
 								<div class="search-wrap">
-									<label for="search" class="blind">공지사항 내용 검색</label> <input
+									<label for="search" class="blind">게시글 검색</label> <input
 										id="search" type="search" name="" placeholder="검색어를 입력해주세요."
 										value="">
 									<button type="submit" class="btn btn-dark">검색</button>
@@ -90,13 +90,13 @@
 				</div>
 
 			
-			<td colspan=i><a href="#"><img src="화살표2.png"
-					style="border: 1px"></a> <a href="#"><img src="1.png"
-					style="border: 1px"></a> <a href="#"><img src="2.png"
-					style="border: 1px"></a> <a href="#"><img src="3.png"
-					style="border: 1px"></a> <a href="#"><img src="4.png"
-					style="border: 1px"></a> <a href="#"><img src="5.png"
-					style="border: 1px"></a> <a href="#"><img src="화살표.png"
+			<td colspan=i><a href="#"><img src="${pageContext.request.contextPath}/img/group/화살표2.png"
+					style="border: 1px"></a> <a href="#"><img src="${pageContext.request.contextPath}/img/group/1.png"
+					style="border: 1px"></a> <a href="#"><img src="${pageContext.request.contextPath}/img/group/2.png"
+					style="border: 1px"></a> <a href="#"><img src="${pageContext.request.contextPath}/img/group/3.png"
+					style="border: 1px"></a> <a href="#"><img src="${pageContext.request.contextPath}/img/group/4.png"
+					style="border: 1px"></a> <a href="#"><img src="${pageContext.request.contextPath}/img/group/5.png"
+					style="border: 1px"></a> <a href="#"><img src="${pageContext.request.contextPath}/img/group/화살표.png"
 					style="border: 1px"></a></td>
 			</section>
 	

@@ -29,7 +29,7 @@
 						<table class="table">
 							<th>OTT
 							<td>
-								<select name="ottId">
+								<select name="ottId" style="width: 100%; border: 0;>
 									<option value="1" selected>Netflix</option>
 									<option value="2">Watcha</option>
 									<option value="3">Youtube</option>
@@ -42,16 +42,16 @@
 
 							<tr>
 								<th>제목</th>
-								<td><input type="text" size="68" name="title" required></td>
+								<td><input type="text" size="68" name="title" style="width: 99%; height: 100%; border: 0;" required></td>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea cols="70" rows="15" name="content" required></textarea></td>
+								<td><textarea cols="70" rows="15" name="content" style="width:98%; height:90%; border: 0; resize: none;" required></textarea></td>
 							</tr>
 						</table>
 						<br>
-						<button type="submit">등록</button>
-						<button><a href="/article/list.do">취소</a></button>
+						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 등록</button>
+						<a href="/group/list.do"><button style="border-radius: 20px; background: white; margin-top: 20px;">게시물 목록</button></a>
 					</form>
 				</div>
 			</section>
