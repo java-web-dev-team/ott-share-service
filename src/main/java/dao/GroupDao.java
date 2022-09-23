@@ -249,7 +249,7 @@ public class GroupDao {
     }
 
     //    groupName 으로 group 조회
-    public List<GroupDto> selectGroupsByGroupName(String searchKeyword) {
+    public List<GroupDto> selectGroupsBySearchKeyword(String searchKeyword) {
         List<GroupDto> selectedGroups = new ArrayList<>();
 
         String selectSql = "select * from `group` where group_name like ?";
