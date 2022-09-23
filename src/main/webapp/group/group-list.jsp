@@ -24,7 +24,7 @@
 				<div class="page-title">
 					<div class="container">
 						<h3>그룹모집</h3>
-						<a href="/group/recruit.do"><img src="${pageContext.request.contextPath}/img/button.png" style="float: right;"></a>
+						<a href="/group/recruit.do"><img src="${pageContext.request.contextPath}/img/group/button.png" style="float: right;"></a>
 					</div>
 				</div>
 

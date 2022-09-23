@@ -74,12 +74,17 @@
 							<button>모집마감</button>
 							</c:if></form>
 					</td>
+			</table>
 				<c:forEach var="nickname" items="${nicknames}">
 					<c:if test="${sessionScope.member.nickname == nickname}">
-						<form action="update.do" method="get"><button type="submit">수정</button></form>
+						<form action="update.do" method="get">
+							<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 수정
+							</button>
+							<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 삭제
+							</button>
+						</form>
 					</c:if>
 				</c:forEach>
-			</table>
 			</div>
 		</section>
 	</div>
