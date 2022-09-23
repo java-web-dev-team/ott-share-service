@@ -52,8 +52,8 @@
 							</tr>
 						</table>
 						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 등록</button>
-						<a href="/group/list.do"><button style="border-radius: 20px; background: white; margin-top: 20px;">게시물 목록</button></a>
 					</form>
+					<a href="javascript:window.history.back();"><button style="border-radius: 20px; background: white; margin-top: 20px;">취소</button></a>
 				</div>
 			</section>
 			<br>
