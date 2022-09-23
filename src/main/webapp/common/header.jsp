@@ -10,6 +10,8 @@
          pageEncoding="UTF-8" %>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <div class="screen">
+    <a href='/index.do'> <img src="../../img/member/pizza.png"
+                              style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
     <ul class="menu" style="display: inline-table;">
         <c:if test="${sessionScope.member == null}">
             <li id="그룹모집"><a href='/member/login.do'>로그인</a></li>
@@ -46,7 +48,6 @@
             <li id="그룹모집"><a href='/group/recruit.do'>그룹 모집</a></li>
         </c:if>
     </ul>
-    <a href='/index.do'> <img src="../../img/member/pizza.png"
-                              style="margin-right: 150px; margin-left: 70px; width: 185px;"></a>
+
 </div>
 <hr>
