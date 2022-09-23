@@ -32,6 +32,7 @@ public class MemberDeleteHandler implements CommandHandler {
         MemberDao memberDao = new MemberDaoImpl();
         HttpSession session = request.getSession();
         memberDao.deleteMember((String)session.getAttribute("name"));
+        session.invalidate();
 
         return url;
     }
