@@ -51,12 +51,13 @@
 								<td><input type="text" name="period" style="width: 5%;height: 98%;border: 0;" required>개월</td>
 							</tr>
 						</table>
+						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 등록</button>
+						<a href="/group/list.do"><button style="border-radius: 20px; background: white; margin-top: 20px;">게시물 목록</button></a>
 					</form>
 				</div>
 			</section>
 			<br>
-			<img src="${pageContext.request.contextPath}/img/group/등록.png" style="margin-left: 80px;">
-			<img src="${pageContext.request.contextPath}/img/group/목록.png" style="margin-left: 80px;" onclick="location.href='list.do'">
+
 		</div>
 	</div>
 </body>
