@@ -28,12 +28,12 @@ public class MemberDeleteHandler implements CommandHandler {
     }
 
     public String processForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String url = "/index.jsp";
         MemberDao memberDao = new MemberDaoImpl();
         HttpSession session = request.getSession();
         memberDao.deleteMember((String)session.getAttribute("name"));
         session.invalidate();
+        response.sendRedirect("/index.do");
+        return null;
 
-        return url;
     }
 }

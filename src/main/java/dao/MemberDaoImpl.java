@@ -180,19 +180,22 @@ public class MemberDaoImpl implements MemberDao{
     @Override
     public int insertMember(MemberDto member) throws Exception {
         // id, member_id, password, nickname, phone
-        String sql = "INSERT IGNORE INTO member VALUES (?, ?, ?, ?, ?)";
-        try (
-                Connection conn = DBManager.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-        ) {
+        int result = 0; // 없는 사용자
+        String sql = "INSERT INTO member VALUES (?, ?, ?, ?, ?)";
+        try {
+            Connection conn = DBManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, 0);
             pstmt.setString(2, member.getMemberId());
             pstmt.setString(3, member.getPassword());
             pstmt.setString(4, member.getNickname());
             pstmt.setString(5, member.getPhone());
 
-            return pstmt.executeUpdate();
+            return result = pstmt.executeUpdate();
+        } catch(Exception e){
+            e.printStackTrace();
         }
+        return result;
     }
 
     // 전체 삭제 메서드

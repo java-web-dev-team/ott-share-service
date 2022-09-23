@@ -15,9 +15,10 @@ public class MainHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 
 		if (session.getAttribute("member") != null){
-			return "/member/main.jsp";
+			response.sendRedirect("/member/main.jsp");
+			return null;
 		} else{
-			return "/index.jsp";
+			return "index.jsp";
 		}
 		// TODO Auto-generated method stub
 

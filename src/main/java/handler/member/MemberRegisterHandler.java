@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class MemberRegisterHandler implements CommandHandler {
 
@@ -16,9 +18,9 @@ public class MemberRegisterHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        if(request.getMethod().equalsIgnoreCase("GET")) {
-            return "/member/registerForm.jsp";
-        }
+            if(request.getMethod().equalsIgnoreCase("GET")) {
+                return "registerForm.jsp";
+            }
         else if(request.getMethod().equalsIgnoreCase("POST")) {
             return processSubmit(request, response);
         }
@@ -29,12 +31,13 @@ public class MemberRegisterHandler implements CommandHandler {
     }
 
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String url = "loginForm.jsp";
         try{
             request.setCharacterEncoding("UTF-8");
-        } catch(Exception e){
+        } catch(UnsupportedEncodingException e){
             e.printStackTrace();
         }
-
 
         String id = request.getParameter("id");
         String password = request.getParameter("pwd");
@@ -48,10 +51,15 @@ public class MemberRegisterHandler implements CommandHandler {
         memberDto.setNickname(nickname);
         memberDto.setPhone(phone);
 
-        memberDao.insertMember(memberDto);
         HttpSession session = request.getSession();
-        session.setAttribute("member", memberDto);
-        return "/member/loginForm.jsp";
+        int result = memberDao.insertMember(memberDto);
+        if (result == 1) {
+            session.setAttribute("userid", memberDto.getMemberId());
+        } else {
+            url = "registerForm.jsp";
+        }
+
+        return url;
 
     }
 
