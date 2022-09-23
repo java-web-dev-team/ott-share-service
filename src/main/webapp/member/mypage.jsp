@@ -7,7 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/member.js"></script>
+    <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet">
+    <style>
+        .card {
+            width: 60%;
+            margin: 3% auto;
+            padding: 20px;
+            text-align: center;
+            border: solid 1px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,43 +27,31 @@
     <%@ include file="/common/header.jsp" %>
 </header>
 
-            <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-            <script src="sidebars.js"></script>
-            <div class="card">
-              <style>
-                  .card {
-                      width: 40%;
-                      margin:auto;
-                      text-align: center;
-                  }
-              </style>
+    <div class="screen">
+            <div class="card" style="margin-top: 5%; width: 400px;">
                           <h5 class="card-header">회원 정보</h5>
+                <hr>
                           <div class="card-body">
-                            <h5 class="card-title">개인 정보</h5>
-                              <p class="card-text">id : ${sessionScope.member.memberId}</p>
+                              <p class="card-text">아이디 : ${sessionScope.member.memberId}</p>
                               <p class="card-text1">닉네임 : ${sessionScope.member.nickname}</p>
                               <p class="card-text2">휴대폰 : ${sessionScope.member.phone}</p>
-                              <a href="update.do" class="btn btn-primary">개인 정보 수정</a>
-                              <br>
-                              <a href="memberDelete.do" class="btn btn-primary">회원 탈퇴</a>
+                              <a href="update.do" class="btn btn-primary">
+                                  <button style="border-radius: 20px; background: white">개인 정보 수정</button></a>
+                              <a href="memberDelete.do" class="btn btn-primary">
+                                  <button style="border-radius: 20px; background: white">
+                                      회원 탈퇴</button></a>
 
                           </div>
                         </div>
-                        <div class="card" style="margin-top: 1%;">
+                        <div class="card" style="margin-top: 1%; width: 400px;">
                           <div class="card-header">
-                              <style>
-                                  li {
-                                      text-align: left;
-                                  }
-                              </style>
-                              내가 쓴 게시물
+                             <h5 class="card-header">내가 가입한 그룹</h5>
+                              <hr>
                           </div>
-                            <c:forEach var="group" items="${myGroup}">
+                            <p style="margin: 50px; font-size: 14px;"><c:forEach var="group" items="${myGroup}">
                          ${group.groupName}
-                            </c:forEach>
+                            </c:forEach></p>
                         </div>
-                        
-                        </div>
-  
-  </body>
-  </html>
+    </div>
+</body>
+</html>
