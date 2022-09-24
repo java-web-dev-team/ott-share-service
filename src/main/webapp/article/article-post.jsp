@@ -30,7 +30,8 @@
 							<th>OTT
 							<td>
 								<select name="ottId" style="width: 100%; border: 0;>
-									<option value="1" selected>Netflix</option>
+									<option value=">
+									<option value="1">Netflix</option>
 									<option value="2">Watcha</option>
 									<option value="3">Youtube</option>
 									<option value="4">Tving</option>
@@ -51,7 +52,9 @@
 						</table>
 						<br>
 						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 등록</button>
-						<a href="/group/list.do"><button style="border-radius: 20px; background: white; margin-top: 20px;">게시물 목록</button></a>
+					</form>
+					<form action="/article/list.do" method="get">
+						<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 목록</button>
 					</form>
 				</div>
 			</section>

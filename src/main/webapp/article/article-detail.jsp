@@ -67,16 +67,16 @@
 					<td colspan="3"><pre>${article.content}</pre></td>
 				</tr>
 			</table>
-				<c:forEach var="nickname" items="${nicknames}">
 				<c:if test="${sessionScope.member.nickname == nickname}">
 				<form action="/article/update.do" method="get">
 					<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 수정
 					</button>
+				</form>
+				<form action="/article/delete.do" method="post">
 					<button type="submit" style="border-radius: 20px; background: white; margin-top: 20px;">게시물 삭제
 					</button>
 				</form>
 				</c:if>
-				</c:forEach>
 
 		</section>
 	</div>
