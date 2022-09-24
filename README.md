@@ -9,13 +9,24 @@
 - 왕대륜
   - 팀장 - 데이터베이스 관리
 - 김건우
-  - 프론트엔드 - jsp, html, css
+  - jsp, html, css
 - 양진철
-  - 프론트엔드 - jsp, html, css
+  - jsp, html, css
 - 유동엽
-  - 백엔드 - 회원 관리 기능 구현
+  - 회원 관리 기능 구현
 - 서한성
-  - 백엔드 - 그룹, 꿀잼 추천 게시판 관리 기능 구현
+  - 그룹, 꿀잼 추천 게시판 관리 기능 구현
+
+# 기술 스택
+- maven archetype
+- Java
+- JSP
+- JSTL
+- JavaScript
+- HttpServlet
+- MySQL
+- AWS RDS
+- Lombok
 
 # 데이터베이스 설계
 ![pizzadb-diagram.png](pizzadb-diagram.png)
@@ -39,5 +50,5 @@
   - 게시판 작성, 조회, 수정, 삭제
   - 권한설정
     - 작성자만 수정, 삭제 가능
-    - 로그인 상태에서만 게시글 작성 가능
+    - 로그인 상태에서만 게시글 작성 가가
   
