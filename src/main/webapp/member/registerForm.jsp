@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,6 @@
 			data: query,
 			success: function (data) {
 				// 1(존재하는 id) , -1(존재하지않는 id)
-				var passId;
 				if (data == 1) {
 					alert("이미 존재하는 아이디입니다.");
 					passId = false;
@@ -87,10 +87,9 @@
 					passId = true;
 				}
 			},
-			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				alert("관리자 한테 문의주세요.")
-			}
 		})
+
+		return passId;
 	});
 
 	$("#duplicateCheckNickname").on("click", function (e) {
@@ -103,8 +102,7 @@
 			data: query,
 			success: function (data) {
 				// 1(존재하는 id) , -1(존재하지않는 id)
-				var passNickname;
-				if (data == 1) {
+				if (data == "1") {
 					alert("이미 존재하는 닉네임입니다.");
 					passNickname = false;
 				} else {
@@ -112,10 +110,8 @@
 					passNickname = true;
 				}
 			},
-			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				alert("관리자 한테 문의주세요.")
-			}
 		})
+		return passNickname;
 	});
 
 function accept_login() {
@@ -127,12 +123,12 @@ function accept_login() {
 			return false;
 		}
 
-		if (passId = false) {
+		if (passId == false) {
 			alert("아이디 중복확인을 해주세요.");
 			return false;
 		}
 
-		if (passNickname = false) {
+		if (passNickname == false) {
 			alert("닉네임 중복확인을 해주세요.");
 			return false;
 		}

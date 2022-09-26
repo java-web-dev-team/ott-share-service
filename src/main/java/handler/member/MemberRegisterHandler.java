@@ -53,8 +53,9 @@ public class MemberRegisterHandler implements CommandHandler {
 
         HttpSession session = request.getSession();
         int result = memberDao.insertMember(memberDto);
-        if (result == 1) {
+        if (result == 1 && (memberDao.confirmID(id)==-1) && (memberDao.confirmNickname(nickname) == -1)) {
             session.setAttribute("userid", memberDto.getMemberId());
+            session.setAttribute("msg", "회원가입에 실패하셨습니다. 중복체크를 다시 진행해주세요");
         } else {
             url = "registerForm.jsp";
         }
