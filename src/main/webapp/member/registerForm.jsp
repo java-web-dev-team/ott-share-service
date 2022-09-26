@@ -29,6 +29,7 @@
 					<c:if test="${not empty msg}">
 						<i class="fa fa-exclamation-circle"> ${URLDecoder.decode(msg)}</i>
 					</c:if>
+				<br>
 				</div>
 
 				<form class="register-form" method="post" name="frm" action="register.do">
@@ -79,12 +80,13 @@
 			data: query,
 			success: function (data) {
 				// 1(존재하는 id) , -1(존재하지않는 id)
-				if (data == 1) {
-					alert("이미 존재하는 아이디입니다.");
-					passId = false;
-				} else {
-					alert("사용 가능한 아이디입니다.");
+				if (data == -1) {
+					alert("사용 가능한 닉네임입니다.");
 					passId = true;
+
+				} else {
+					alert("이미 존재하는 닉네임입니다.");
+					passId = false;
 				}
 			},
 		})
@@ -102,12 +104,13 @@
 			data: query,
 			success: function (data) {
 				// 1(존재하는 id) , -1(존재하지않는 id)
-				if (data == "1") {
-					alert("이미 존재하는 닉네임입니다.");
-					passNickname = false;
-				} else {
+				if (data == -1) {
 					alert("사용 가능한 닉네임입니다.");
 					passNickname = true;
+
+				} else {
+					alert("이미 존재하는 닉네임입니다.");
+					passNickname = false;
 				}
 			},
 		})
@@ -115,6 +118,10 @@
 	});
 
 function accept_login() {
+		passId == false;
+		passNickname == false;
+
+
 
 
 		// 아이디 입력체크
@@ -123,8 +130,17 @@ function accept_login() {
 			return false;
 		}
 
-		if (passId == false) {
-			alert("아이디 중복확인을 해주세요.");
+		if (passId == true) {
+			return true;
+		}
+
+
+		if (passNickname == true) {
+			return true;
+		}
+
+		if(passId == false){
+			alert("아이디 중복확인을 해주세요.")
 			return false;
 		}
 
@@ -154,6 +170,8 @@ function accept_login() {
 			alert("닉네임을 입력해주세요");
 			return false;
 		}
+
+
 		alert("축하합니다. 회원가입이 완료되었습니다.")
 		return true;
 	}
