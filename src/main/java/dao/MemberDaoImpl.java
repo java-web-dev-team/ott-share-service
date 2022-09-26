@@ -80,7 +80,7 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
-    public int confirmNickname(String nickname) {
+    public int confirmNickname(String nickname){
         // -1 = 중복 x, 1 -> 중복 o
         int result = -1;
         String sql = "SELECT nickname FROM member WHERE nickname = ?";

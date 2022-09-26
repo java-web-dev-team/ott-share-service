@@ -22,9 +22,9 @@ public class duplicateCheckNicknameHandler implements CommandHandler {
     private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // url 반환 (jsp)
         MemberDao memberDao = new MemberDaoImpl();
-        String name = request.getParameter("nickname");
-        int nickname = memberDao.confirmNickname(name);
-        request.setAttribute("result", nickname);
+        String nickname1 = request.getParameter("nickname");
+        int nickname = memberDao.confirmNickname(nickname1);
+        request.setAttribute("nickname", nickname);
         return "/member/duplicateCheckNickname.jsp";
     }
 

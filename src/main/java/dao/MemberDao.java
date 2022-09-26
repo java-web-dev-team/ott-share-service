@@ -21,12 +21,12 @@ public interface MemberDao {
 
     int confirmID(String id) throws Exception;
 
+    int confirmNickname(String nickname) throws Exception;
+
     MemberDto getMember(String id) throws Exception;
 
     List<MemberDto> selectAllMember() throws Exception;
 
     String findNickName(String id);
-
-    int confirmNickname(String nickname);
 
 }
