@@ -25,11 +25,12 @@ public class ArticleDeleteHandler implements CommandHandler {
         }
     }
 
-    private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+    private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         ArticleDto article = (ArticleDto) session.getAttribute("article");
 
         articleDao.deleteArticle(article.getTitle());
-        return "/article/list.do";
+        response.sendRedirect("/article/list.do");
+        return null;
     }
 }

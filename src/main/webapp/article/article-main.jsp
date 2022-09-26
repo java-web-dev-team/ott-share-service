@@ -64,9 +64,6 @@
 																   style="border-radius: 10px; background: white;">바로가기</button></a>
 					</div>
 				</div>
-
-
-
 			</div>
 		</div>
 		<div class="row"

@@ -34,7 +34,7 @@ public class ArticlePostHandler implements CommandHandler {
         }
     }
 
-    private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+    private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         MemberDto member = (MemberDto) session.getAttribute("member");
 
@@ -52,7 +52,8 @@ public class ArticlePostHandler implements CommandHandler {
         articleDao.save(article);
         request.setAttribute("article", article);
         session.setAttribute("article", article);
-        return "/article/article-detail.jsp";
+        response.sendRedirect("/article/detail.do?title=" + title);
+        return null;
     }
 
     private String processForm(HttpServletRequest request, HttpServletResponse response) {
